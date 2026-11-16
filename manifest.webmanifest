@@ -1,0 +1,26 @@
+{
+  "name": "Englisch Klasse 8",
+  "short_name": "Englisch 8",
+  "lang": "de",
+  "dir": "ltr",
+  "display": "standalone",
+  "start_url": "./",
+  "scope": "./",
+  "background_color": "#f3efe6",
+  "theme_color": "#0f5f56",
+  "description": "Lern-App zur Klassenarbeit in Klasse 8: Gerund, British und American English sowie Simple Present und Present Progressive.",
+  "icons": [
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
