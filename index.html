@@ -6,13 +6,14 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <meta name="apple-mobile-web-app-title" content="Englisch Klasse 8">
+  <meta name="apple-mobile-web-app-title" content="Englisch 8">
   <meta name="application-name" content="Englisch Klasse 8">
   <meta name="theme-color" content="#0f5f56">
   <meta name="description" content="Lern-App zur Klassenarbeit in Klasse 8: Gerund, British und American English sowie Simple Present und Present Progressive.">
   <title>Englisch Klasse 8</title>
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="apple-touch-icon.png" sizes="180x180">
+  <link rel="icon" href="icon-192.png" sizes="192x192" type="image/png">
   <link rel="icon" href="icon-512.png" sizes="512x512" type="image/png">
   <style>
 :root {
@@ -22,7 +23,7 @@
   --card: #fffdf8;
   --line: #e4ddd2;
   --accent: #0f5f56;
-  --accent-soft: #e6f3f1;
+  --accent-soft: color-mix(in srgb, var(--accent) 16%, #fffdf8);
   --good: #0f7a4a;
   --good-bg: #e7f6ee;
   --bad: #b42318;
@@ -254,20 +255,75 @@ label.pw {
 .sol-a { font-weight: 700; color: var(--good); margin: 6px 0; }
 .quiz-block { margin-bottom: 16px; }
 
+.eltern-link {
+  display: block;
+  width: 100%;
+  margin-top: 28px;
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+  min-height: 36px;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.badge {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 99px;
+  padding: 3px 8px;
+  margin-left: 6px;
+}
+.badge.ok { background: var(--good-bg); color: var(--good); }
+.badge.no { background: var(--bad-bg); color: var(--bad); }
+.badge.mute { background: var(--paper); color: var(--muted); }
+.task-log { border-top: 1px solid var(--line); padding: 10px 0; }
+.task-log:first-of-type { border-top: none; }
+.task-log .when { font-size: 13px; color: var(--muted); margin-top: 2px; }
+.task-log .given { font-size: 14px; margin-top: 2px; }
+.warn-list { margin: 8px 0 0; padding-left: 18px; font-size: 15px; line-height: 1.45; }
+.retry-note { font-size: 13px; color: var(--muted); margin-top: 6px; font-weight: 600; }
+
+.warn-box {
+  background: var(--bad-bg);
+  color: var(--bad);
+  border-radius: 12px;
+  padding: 12px 14px;
+  margin: 0 0 12px;
+  font-size: 15px;
+  line-height: 1.45;
+  font-weight: 650;
+}
+.warn-box.warn {
+  background: #fff4e5;
+  color: #8a4b08;
+}
+.warn-box.info {
+  background: var(--paper);
+  color: var(--muted);
+  font-weight: 500;
+}
+
   </style>
 </head>
 <body>
   <div id="app"></div>
   <script>
-  const DATA = {"topics":[{"id":"gerund","title":"Gerund","teaser":"-ing als Nomen: Subjekt, nach Verben und nach Präpositionen","lessonTitle":"Die 4 Regeln","lesson":[{"heading":"Was ist ein Gerund?","body":"Ein Gerund ist ein Verb mit -ing, das wie ein Nomen benutzt wird. Im Deutschen übersetzt man es oft mit „zu“ + Infinitiv: Living here is nice = Hier zu leben ist schön."},{"heading":"1. Als Subjekt (am Satzanfang)","body":"Steht die -ing-Form ganz vorne und ist das Subjekt des Satzes, brauchst du das Gerund.","examples":["Living in America is cool.","Meeting up isn't easy."]},{"heading":"2. Nach bestimmten Verben","body":"Nach Verben wie enjoy, miss, keep, stop, finish, imagine und don't mind folgt das Gerund — nicht to + Infinitiv.","examples":["I miss seeing my old friends.","Matt enjoys being in Pittsburgh."]},{"heading":"3. Nach Präpositionen","body":"Nach at, of, about, for, in, on, with, without und auch nach to in look forward to steht immer das Gerund. Hier ist to eine Präposition, kein Teil des Infinitivs.","examples":["Lena is afraid of changing too much.","I'm looking forward to seeing Matt."]},{"heading":"4. Nach Adjektiv + Präposition","body":"Wendungen wie good at, afraid of, interested in, tired of und worried about verlangen ebenfalls das Gerund.","examples":["I'm good at playing football.","Matt isn't worried about being bored."]},{"heading":"Rechtschreibung","body":"Wie beim Present Progressive: ein stummes -e am Ende fällt weg (live → living). Nach kurzem Vokal wird der Konsonant verdoppelt (get → getting)."},{"heading":"Tipp für Lückentexte","body":"Frage in dieser Reihenfolge: Steht das Verb am Satzanfang? Steht davor enjoy, miss, stop, finish oder don't mind? Steht davor eine Präposition? Steht davor Adjektiv + Präposition? Wenn ja: Gerund. Wenn nein, oft to + Infinitiv (want, decide, hope, promise, would like)."}],"quizzes":[{"id":"gerund-subject","title":"Subjekt und nach Verben","blurb":"8 Aufgaben · richtige -ing-Form wählen","questions":[{"prompt":"_____ (swim) in the sea is refreshing.","options":["Swimming","To swim","Swim","Swiming"]},{"prompt":"Tom doesn't mind _____ (get) up early.","options":["getting","to get","get","geting"]},{"prompt":"_____ (learn) the guitar takes time.","options":["Learning","To learn","Learn","Learns"]},{"prompt":"Emma enjoys _____ (dance) at parties.","options":["dancing","to dance","dance","danceing"]},{"prompt":"I miss _____ (live) next to the park.","options":["living","to live","live","liveing"]},{"prompt":"They keep _____ (make) the same mistake.","options":["making","to make","make","makeing"]},{"prompt":"_____ (eat) too much chocolate isn't healthy.","options":["Eating","To eat","Eat","Eats"]},{"prompt":"She finished _____ (do) her homework.","options":["doing","to do","do","done"]}]},{"id":"gerund-prep","title":"Nach Präpositionen","blurb":"8 Aufgaben · Gerund nach of, to, in, for …","questions":[{"prompt":"Paul is afraid of _____ (fail) the test.","options":["failing","to fail","fail","failling"]},{"prompt":"We are looking forward to _____ (spend) the weekend together.","options":["spending","to spend","spend","spent"]},{"prompt":"He is interested in _____ (join) the school club.","options":["joining","to join","join","joins"]},{"prompt":"Are you tired of _____ (sit) in this classroom?","options":["sitting","to sit","sit","siting"]},{"prompt":"She thinks about _____ (move) to Canada.","options":["moving","to move","move","moveing"]},{"prompt":"I'm good at _____ (draw) animals.","options":["drawing","to draw","draw","drawwing"]},{"prompt":"They left without _____ (say) goodbye.","options":["saying","to say","say","said"]},{"prompt":"Thank you for _____ (come) to my party.","options":["coming","to come","come","came"]}]},{"id":"gerund-or-inf","title":"Gerund oder to-Infinitiv","blurb":"10 Aufgaben · typische Klassenarbeitsfrage","questions":[{"prompt":"I want _____ (buy) a new phone.","options":["to buy","buying","buy","bought"]},{"prompt":"She enjoys _____ (bake) cakes.","options":["baking","to bake","bake","bakes"]},{"prompt":"We decided _____ (take) the train.","options":["to take","taking","take","took"]},{"prompt":"He finished _____ (pack) his bag.","options":["packing","to pack","pack","packed"]},{"prompt":"I'd like _____ (visit) my cousins.","options":["to visit","visiting","visit","visited"]},{"prompt":"Please stop _____ (shout).","options":["shouting","to shout","shout","shouted"]},{"prompt":"They hope _____ (arrive) on time.","options":["to arrive","arriving","arrive","arrived"]},{"prompt":"I don't mind _____ (walk) in the rain.","options":["walking","to walk","walk","walked"]},{"prompt":"She promised _____ (help) us tomorrow.","options":["to help","helping","help","helps"]},{"prompt":"Imagine _____ (win) the lottery.","options":["winning","to win","win","won"]}]},{"id":"gerund-transform","title":"Sätze umformen","blurb":"6 Aufgaben · Satz mit Gerund wählen","questions":[{"prompt":"Wähle die richtige Umformung: It is fun to ride a bike.","options":["Riding a bike is fun.","To riding a bike is fun.","Ride a bike is fun."]},{"prompt":"It is easy to forget names.","options":["Forgetting names is easy.","Forget names is easy.","To forgetting names is easy."]},{"prompt":"It is important to be on time.","options":["Being on time is important.","Be on time is important.","To being on time is important."]},{"prompt":"I look forward _____ my friends. (see)","options":["I look forward to seeing my friends.","I look forward to see my friends.","I look forward seeing my friends."]},{"prompt":"She is afraid of _____ her keys. (lose)","options":["She is afraid of losing her keys.","She is afraid of to lose her keys.","She is afraid of lose her keys."]},{"prompt":"He is good at _____ bikes. (fix)","options":["He is good at fixing bikes.","He is good at to fix bikes.","He is good at fix bikes."]}]}]},{"id":"be-ae","title":"British & American English","teaser":"Wortschatz und typische Rechtschreibunterschiede","lessonTitle":"BE oder AE?","lesson":[{"heading":"Wortschatz","body":"In Klassenarbeiten musst du oft das britische oder amerikanische Pendant einsetzen. Lerne die Paare zusammen, nicht einzeln."},{"heading":"Rechtschreibung","body":"Häufig abgefragt: BE -our/-re/-ise (colour, centre, organise, neighbourhood) gegen AE -or/-er/-ize (color, center, organize, neighborhood). Dieselbe Regel gilt auch für favourite/favorite."}],"quizzes":[{"id":"beae-words","title":"Wortschatz BE ↔ AE","blurb":"10 Aufgaben · das passende Wort wählen","questions":[{"prompt":"British English: flat → American English?","options":["apartment","lift","store","vacation"]},{"prompt":"American English: store → British English?","options":["shop","flat","cinema","pavement"]},{"prompt":"Was ist das amerikanische Wort für football?","options":["soccer","football","pavement","elevator"]},{"prompt":"Was ist das britische Wort für elevator?","options":["lift","flat","torch","rubbish"]},{"prompt":"British English: holiday → American English?","options":["vacation","cinema","sidewalk","garbage"]},{"prompt":"American English: movie theater → British English?","options":["cinema","shop","mall","torch"]},{"prompt":"Welches amerikanische Wort passt zu rubbish?","options":["garbage","pavement","lift","shop"]},{"prompt":"American English: sidewalk → British English?","options":["pavement","torch","flat","holiday"]},{"prompt":"Was ist das amerikanische Wort für torch?","options":["flashlight","elevator","soccer","apartment"]},{"prompt":"British English: shopping centre → American English?","options":["shopping mall","cinema","pavement","storey"]}]},{"id":"beae-spelling","title":"Rechtschreibung BE / AE","blurb":"8 Aufgaben · -our/-or, -re/-er, -ise/-ize","questions":[{"prompt":"Wie schreibt man colour auf American English?","options":["color","colour","coler","collor"]},{"prompt":"Wie schreibt man center auf British English?","options":["centre","center","centere","centré"]},{"prompt":"Welche Schreibweise von organise ist amerikanisch?","options":["organize","organise","organice","organeese"]},{"prompt":"Wie schreibt man neighbourhood auf American English?","options":["neighborhood","neighbourhood","nieghborhood","neighborhoud"]},{"prompt":"Wie schreibt man favourite auf American English?","options":["favorite","favourite","favorit","favourit"]},{"prompt":"Welche Schreibweise ist britisch?","options":["neighbourhood","neighborhood","neighborhod","neighbourhod"]},{"prompt":"In American English schreibt man:","options":["center","centre","centrum","centar"]},{"prompt":"Welche Schreibweise ist britisch?","options":["organise","organize","organiz","organisze"]}]}]},{"id":"tenses","title":"Simple Present & Progressive","teaser":"Gewohnheit oder genau jetzt? Signalwörter und Zustandsverben","lessonTitle":"Welche Zeitform?","lesson":[{"heading":"Simple Present","body":"Für Dinge, die immer, regelmäßig oder oft passieren: Hobbys, Routinen, Fakten. Signalwörter: always, usually, often, sometimes, never, every day. Form: Grundform, bei he/she/it kommt -s dazu.","examples":["Matt usually lives in Pittsburgh."]},{"heading":"Present Progressive","body":"Für Handlungen, die genau jetzt oder nur vorübergehend passieren. Signalwörter: now, at the moment, look!, listen!. Form: am/is/are + Verb-ing.","examples":["Right now, I am reading a grammar book."]},{"heading":"Zustandsverben","body":"Verben wie like, love, hate, want, know und understand stehen fast nie im Progressive, sondern im Simple Present. Richtig: I like pizza. Falsch: I am liking pizza."}],"quizzes":[{"id":"tense-form","title":"Die richtige Zeitform","blurb":"8 Aufgaben · Simple Present oder Progressive","questions":[{"prompt":"Look! The dog _____ (chase) the cat.","options":["is chasing","chases","chase","chasing"]},{"prompt":"My mum usually _____ (drink) tea in the morning.","options":["drinks","is drinking","drink","drinking"]},{"prompt":"Quiet! The students _____ (take) a test at the moment.","options":["are taking","take","takes","taking"]},{"prompt":"We sometimes _____ (go) to the swimming pool on Fridays.","options":["go","are going","goes","going"]},{"prompt":"Right now, Ben _____ (make) a sandwich.","options":["is making","makes","make","is makeing"]},{"prompt":"She _____ (know) a lot about dinosaurs.","options":["knows","is knowing","know","knowing"]},{"prompt":"Listen! Someone _____ (knock) at the door.","options":["is knocking","knocks","knock","knocking"]},{"prompt":"I _____ (want) a glass of water.","options":["want","am wanting","wants","wanting"]}]},{"id":"tense-neg-q","title":"Verneinungen und Fragen","blurb":"8 Aufgaben · don't/doesn't, am/is/are not, Do/Does/Is","questions":[{"prompt":"Bilde die Verneinung: She plays tennis every Monday.","options":["She doesn't play tennis every Monday.","She doesn't plays tennis every Monday.","She isn't play tennis every Monday."]},{"prompt":"Bilde die Frage: They are watching the match.","options":["Are they watching the match?","Do they watching the match?","Are they watch the match?"]},{"prompt":"Bilde die Verneinung: He is wearing a blue jacket.","options":["He isn't wearing a blue jacket.","He doesn't wearing a blue jacket.","He isn't wear a blue jacket."]},{"prompt":"Bilde die Frage: You go to school by bike.","options":["Do you go to school by bike?","Are you go to school by bike?","Does you go to school by bike?"]},{"prompt":"Bilde die Verneinung: We always have breakfast at 7.","options":["We don't always have breakfast at 7.","We aren't always have breakfast at 7.","We don't always has breakfast at 7."]},{"prompt":"Bilde die Frage: Lisa is talking to her teacher.","options":["Is Lisa talking to her teacher?","Does Lisa talking to her teacher?","Is Lisa talk to her teacher?"]},{"prompt":"Bilde die Frage: He gets up at 6 every day.","options":["Does he get up at 6 every day?","Does he gets up at 6 every day?","Is he get up at 6 every day?"]},{"prompt":"Bilde die Verneinung: The children are running in the hall.","options":["The children aren't running in the hall.","The children don't running in the hall.","The children aren't run in the hall."]}]},{"id":"tense-cloze","title":"Lückentext","blurb":"6 Lücken in einem zusammenhängenden Text","questions":[{"prompt":"Lücke 1: I usually _____ early. (get up)","hint":"Signalwort usually","passage":"Hi, I'm Jake. I usually ___ early. Right now I ___ breakfast in the kitchen. My sister always ___ to music in the morning, but today she ___ our dad in the garden. Listen! The neighbour's dog ___ again. I ___ why it is so loud every day.","options":["get up","gets up","am getting up","getting up"]},{"prompt":"Lücke 2: Right now I _____ breakfast. (have)","hint":"Signalwort Right now","passage":"Hi, I'm Jake. I usually ___ early. Right now I ___ breakfast in the kitchen. My sister always ___ to music in the morning, but today she ___ our dad in the garden. Listen! The neighbour's dog ___ again. I ___ why it is so loud every day.","options":["am having","have","has","having"]},{"prompt":"Lücke 3: My sister always _____ to music. (listen)","hint":"Signalwort always, she","passage":"Hi, I'm Jake. I usually ___ early. Right now I ___ breakfast in the kitchen. My sister always ___ to music in the morning, but today she ___ our dad in the garden. Listen! The neighbour's dog ___ again. I ___ why it is so loud every day.","options":["listens","is listening","listen","listening"]},{"prompt":"Lücke 4: but today she _____ our dad. (help)","hint":"today = gerade / vorübergehend","passage":"Hi, I'm Jake. I usually ___ early. Right now I ___ breakfast in the kitchen. My sister always ___ to music in the morning, but today she ___ our dad in the garden. Listen! The neighbour's dog ___ again. I ___ why it is so loud every day.","options":["is helping","helps","help","helping"]},{"prompt":"Lücke 5: Listen! The neighbour's dog _____ again. (bark)","hint":"Signalwort Listen!","passage":"Hi, I'm Jake. I usually ___ early. Right now I ___ breakfast in the kitchen. My sister always ___ to music in the morning, but today she ___ our dad in the garden. Listen! The neighbour's dog ___ again. I ___ why it is so loud every day.","options":["is barking","barks","bark","barking"]},{"prompt":"Lücke 6: I _____ why it is so loud every day. (not understand)","hint":"understand ist ein Zustandsverb","passage":"Hi, I'm Jake. I usually ___ early. Right now I ___ breakfast in the kitchen. My sister always ___ to music in the morning, but today she ___ our dad in the garden. Listen! The neighbour's dog ___ again. I ___ why it is so loud every day.","options":["don't understand","am not understanding","doesn't understand","not understand"]}]}]},{"id":"mix","title":"Mix-Test","teaser":"Alle Themen zusammen, wie in einer Klassenarbeit","lessonTitle":"Vor dem Test","lesson":[{"heading":"So läuft der Mix-Test","body":"Hier kommen Gerund, British/American English und die Zeitformen in einem Durchgang. Test A ist etwas kürzer, Test B länger und näher an einer Klassenarbeit: Lücken, Umformungen, Gerund oder Infinitiv, Rechtschreibung sowie Fragen und Verneinungen."},{"heading":"Tipp","body":"Lies zuerst die Signalwörter und die Wörter direkt vor der Lücke. Bei BE/AE schau genau, ob nach dem britischen oder dem amerikanischen Wort bzw. der Schreibweise gefragt ist."}],"quizzes":[{"id":"mix-a","title":"Übungstest A","blurb":"16 Aufgaben · alle drei Themen","questions":[{"prompt":"_____ (travel) around the world is her dream.","options":["Travelling","To travel","Travel","Traveelling"]},{"prompt":"My parents don't mind _____ (drive) me to school.","options":["driving","to drive","drive","driveing"]},{"prompt":"Sam enjoys _____ (take) photos of animals.","options":["taking","to take","take","takes"]},{"prompt":"She is good at _____ (speak) French.","options":["speaking","to speak","speak","spoken"]},{"prompt":"We are looking forward to _____ (have) a picnic.","options":["having","to have","have","had"]},{"prompt":"Thank you for _____ (carry) my bag.","options":["carrying","to carry","carry","carried"]},{"prompt":"Was ist das britische Wort für apartment?","options":["flat","lift","shop","pavement"]},{"prompt":"Was ist das amerikanische Wort für cinema?","options":["movie theater","shop","soccer","flashlight"]},{"prompt":"Welches amerikanische Wort passt zu rubbish?","options":["garbage","pavement","lift","holiday"]},{"prompt":"American English: sidewalk → British English?","options":["pavement","torch","store","vacation"]},{"prompt":"Wie schreibt man colour auf American English?","options":["color","colour","coler","collar"]},{"prompt":"Look! James _____ (climb) the tree.","options":["is climbing","climbs","climb","climbing"]},{"prompt":"We often _____ (eat) pasta on Fridays.","options":["eat","are eating","eats","eating"]},{"prompt":"She _____ (hate) getting up late.","options":["hates","is hating","hate","hating"]},{"prompt":"At the moment the kids _____ (play) outside.","options":["are playing","play","plays","playing"]},{"prompt":"Listen! The phone _____ (ring).","options":["is ringing","rings","ring","ringing"]}]},{"id":"mix-b","title":"Übungstest B","blurb":"20 Aufgaben · etwas anspruchsvoller","questions":[{"prompt":"_____ (sit) in the sun too long can be dangerous.","options":["Sitting","To sit","Sit","Siting"]},{"prompt":"He finished _____ (repair) his bike.","options":["repairing","to repair","repair","repaired"]},{"prompt":"I'm interested in _____ (become) a doctor.","options":["becoming","to become","become","became"]},{"prompt":"They left without _____ (close) the window.","options":["closing","to close","close","closed"]},{"prompt":"I want _____ (improve) my English.","options":["to improve","improving","improve","improved"]},{"prompt":"Please stop _____ (make) so much noise.","options":["making","to make","make","made"]},{"prompt":"She decided _____ (join) the choir.","options":["to join","joining","join","joins"]},{"prompt":"Imagine _____ (meet) a film star.","options":["meeting","to meet","meet","met"]},{"prompt":"British English: holiday → American English?","options":["vacation","cinema","apartment","garbage"]},{"prompt":"American English: elevator → British English?","options":["lift","flat","pavement","torch"]},{"prompt":"British English: torch → American English?","options":["flashlight","sidewalk","soccer","store"]},{"prompt":"Wie schreibt man neighbourhood auf American English?","options":["neighborhood","neighbourhood","nieghborhood","neighborhoud"]},{"prompt":"Welche Schreibweise ist amerikanisch?","options":["organize","organise","organice","organeese"]},{"prompt":"Wie schreibt man centre auf American English?","options":["center","centre","centere","centrum"]},{"prompt":"My uncle always _____ (watch) the news at 8.","options":["watches","is watching","watch","watching"]},{"prompt":"Right now I _____ (write) an e-mail.","options":["am writing","write","writes","am writeing"]},{"prompt":"They _____ the question. (not understand)","options":["don't understand","aren't understanding","doesn't understand","not understand"]},{"prompt":"Bilde die Frage: You go to the gym every week.","options":["Do you go to the gym every week?","Are you go to the gym every week?","Does you go to the gym every week?"]},{"prompt":"Bilde die Frage: She is doing her homework at the moment.","options":["Is she doing her homework at the moment?","Does she doing her homework at the moment?","Is she do her homework at the moment?"]},{"prompt":"Bilde die Verneinung: He is wearing a coat today.","options":["He isn't wearing a coat today.","He doesn't wearing a coat today.","He isn't wear a coat today."]}]}]}],"vocabRows":[["flat","apartment","Wohnung"],["holiday(s)","vacation","Urlaub / Ferien"],["football","soccer","Fußball"],["cinema","movie theater","Kino"],["shop","store","Geschäft / Laden"],["shopping centre","shopping mall","Einkaufszentrum"],["lift","elevator","Fahrstuhl"],["rubbish","garbage / trash","Müll"],["pavement","sidewalk","Bürgersteig"],["torch","flashlight","Taschenlampe"]],"hashSalt":"tbcTCS/KwmvkVJp5s7oMPg==","answerHashes":{"gerund:gerund-subject":[["zLfWO1FeQw9+AbucQvMh15vo/vpPoGxYPVkzSC21yjY="],["dsFNCTH9JPeVEl+yQTkmlGjALSPHsiIQoje2krNbJzU="],["Kskjgy+8ONbdWSWlM2Sz+p3/3DN5JiAPK+XGgSnS068="],["wrBjxEGSTXU6ZZScuib2EZcUdc1vkexXHDJo2VmhfAo="],["c+PAiEXcmDmoDMDgbQ8TO5JWgbx2ddSbGqbLSY5zX7M="],["FwKNybKj6ZL3xjee4usE2MDTwBGvmnqN8aAmiUiS/jw="],["xKesfrAHGra5ipSof8rwGZMSljRFQL6bKlo0xBgRql8="],["pP+Bi7HO/dFpz6KA9ddZOHsMjHLOvj7k98upSeMefqQ="]],"gerund:gerund-prep":[["Kd86tDaGLTzODPW4E2qcjsMnygPsRm7kuMQGdqbGgfY="],["JY4F66xjjyP4wTCbPw3Q0Ewh32l5XP5gLgKkKqI0qg8="],["3RkNvPSVK6acIC9GoIqkCg6W704LyQOe/iHaAir7cHE="],["piIWyac1JoGcFQMJCfxi+JKTiV1gGpYI0xZtnwHZcb4="],["q3i2hc6H+VO2lQV4ktiEYAuHVb1a8hdRBQvsLfeDRC0="],["5s8EP8GZkiMj7OiP3zGmrg9uZEb1mMkCqk9PlUm8KwE="],["AS5fB7YgPjcw1MKpWBBbDKzCto0hF8gW09ZE/vLoIcg="],["LHhELTW1EBspIJNVxfAqh/Qxa1RUUgdhCU3Rlmq8FAg="]],"gerund:gerund-or-inf":[["0HNVZInhrFIR5A1ueHJYNHbPvJxpRDARaWOfL9KMc+0="],["Od3qVqzuSvncqcakMD3fbTNKwpM7SEidDo/t1V/zAhM="],["c33L/4iEqePHTpwCoQcOfMV1MyXvO659EMvMbHd3B00="],["iOomqs60W6Nb/0yWj8WCBgQ8MCW1n3Q1+fEirJk/+TE="],["nXjs2qLPbSIj7EMzfsT5swr1qjvl5P80wd8ObgtnIg8="],["Q6lL6iVXzIYm3yi4aUTix2dWEMO9ZmZOuMkPBcUa+q4="],["f3x0hXrFiQwt/88IevJYBEzP5+TP+Wu6AXovrgBLbmA="],["W6EDVBJ/L7tuRTY4GMVZoVxKOgBq/HhndOkmgkM9pBw="],["RPvo6nXzXxJ6ZrjMZ8r2x9SQNBH4zUvaSFL1xCkISJs="],["NfsT6kxEQOiyI7HspDUxd9V8Dm4NkEdnloU4fEd1et8="]],"gerund:gerund-transform":[["APtr9nXJ0QyZlKMbi4Bo1K2Yv88LBpCyUvKV7y9jY+o="],["SHYuHlEnjqZO48iCaBIWLXUjKfEs/sl6BFhMl5HEY5w="],["ARp/zj9iyqR8RKdRx9ufmILbqXNHVJKbx8IdKXKryU0="],["tmupLFcpcxcVQgU/bvD2j4uIXK6TC8RZ+0Mh9c9IcpQ="],["HUlwRhgHAySmtAWIDx1co9Z58loZcoWb6U6Q5S9hIZA="],["BYVrOzkwN3v/NYbjRMWVFS8AqjTkCR+EkncdR/9o6OA="]],"be-ae:beae-words":[["6BX1c8f2oUH+xaMvUENVvp6IdK8lqq29jb7KRI6Iqq8="],["pHNmu6+ApxtIUmPUKynrTz3IxqzEWJSvQUq1UKJau/I="],["sYLtt6oUxH9+DVANbPMRh0GZ6sxIeTv9v5LOhhmEquI="],["hTkMjP8OLWyCNz73DEmer22kn6OxbBYaywNnt9JCQlk="],["2etTo9qa7xyAxSQVQkQKu3KJjfMgYrxYWmYnjzPUR34="],["JpIvXl1swXfVcGLtAfRoj3toNlEm3M4XGhOuJuq54fw="],["JQJe5wVkBe3cgsTV8q25AFH9iJYl1zWpa6mJFbB4iRY="],["kH+73ndzMzZ3j8Jxf1Hd5xrfYh+EKYJ7pxxXxurrt0M="],["EoO9465hfsFGQ9FGkcVbzSgkdVFyyr86xTvYVwbLLVY="],["AjOo60GsLacngSRBAGC7uijad9lFPfNqtO3/kC2AocY="]],"be-ae:beae-spelling":[["ik1VMBLA4FZ+pQOL/AZKlf+vWWA9LEsG3F7ljab5mKU="],["eRZntpg2LSQJxfdNunHXm0AkQ94ujuyWEUDwOxbgoEo="],["JJRjJtS9CT2ijsvBwrJfGxVExSaYb8MzT7ZKcNgeiqE="],["evV7ErH2Yfw/dHDmvE6psYopcBW4j6LlE/wFv+xH6DA="],["fHF01nU/YjxaXWYjPByQ1KY++O2xSHiP2bl9xPpKfl8="],["zYgGGhDr8UzYb4xYuJQhA1unyRUh5iak2rU3oOMkxuI="],["PD/AkiCjNh3lq5cAt8pq1caDkJkiGaPn8LAEgnnjp5s="],["6UQ24ZZf4b+ijp/ZKOdNJvUKZ//W+SkIDnrd8dHnPxk="]],"tenses:tense-form":[["CphV7cUCkPDGh5MwIXWOIyMN8tGLlqySBPofUSnn1mc="],["c/gkJQByuge2WwdZDjF0rl4943odA1VauZIwihFd7cI="],["wH2CuIqxnWYm0NlQE8Q7dspW3m1+e/L5u9X98VE4Hrs="],["2pzE2fztEKnOoTO0D6tkFulaY4dc7SHG0SZEZ1c1uLo="],["wQ5b2Hm8Q/mMCmF9i9/WHNHPB/VG8FWrpsiPYUgtnf8="],["rXMBIp1VKGbxlVU/Gn4NTi7LedF3uP2QpOBVFs0Hcy0="],["xKRH6bfu2nzinkUFHx0NHhfed56q6zwTLoNqmh2Y+Js="],["GBC686uuT0QqCsPWa3xmsunBbg1iqrPigjsQYzClrEQ="]],"tenses:tense-neg-q":[["0q4uVl0D+nOGV1k9w4DdQ3ZLwoG5u1ABXZeKSb8XcMk="],["OC1NXuK3i6pAsca8qyaaIieueY4ehqunHeHn6zOW5bE="],["Qvg7PXdbUMtJz6XN2tlhqKrFPmI1S9ooGkmMKZRKZ7c=","b/lcRJqYufsmQfYA64PVMd9gIFWWDYZICAIuoo2O29o="],["0v8GO5ers2zc77qc7xYxC4W7MyvmJsn2W/QiLdoHEO8="],["FReFlBlU27hCTkitfXpKug1ui0UM+SgP3tIy/jt38/s=","1th4KPDCejIF7dLwILArAJFyrgmeNYLCcZRpBfLGY9Y="],["bIqZ3QOqSFmBVhL7ImO837Dt+t7nnGN6QZ7w32vcDaA="],["WIRlgkRiHyz7j67yTldtTHJlkKz9VBJgwIUpcm+1E50="],["jr9jSfOZKBP57MyoYCKlg9SklutH0Z3eeHKKdIe/qsc=","RPGIIyvGqU5NLbQH3k60ujrtu0LP070YZRobBxf3LAQ="]],"tenses:tense-cloze":[["pE8QMR2sWLJ7AuNc+CfGPKrxsFKRKqu6uKpPs8SmGMs="],["XrLViGfie/nT8f685tmkl2uHAF5s1ULjfZI1SVWQ52g="],["zpSxDzEZxoo2Q0wRPC1VrVfbpod3yxLK3b/Xpx3hBkQ="],["Vj6E5fyPuu9sMhNRWWAIlBV4wdswR91TM6/EXEBE2EQ="],["jshOec3oXktfjcr8jT+aG+n0aLnUOPIzmCsbbCl1iTc="],["L+YAItkggoYEceX5KfkkstU+3VQpr0tCCFHUtDZqhps=","BQbOuEDS/fQoPIYAoDvyHEnse5DB7iajeR3iqY6qLGw="]],"mix:mix-a":[["ZroeQGGnJxMbo8cBIs47InnGMEuLB/m6kxAwQ4i9e7o=","H4QPm8tWqaCzSFPW/aVXmn3ltFVTTR+gUictDz+ga2k="],["VLBMVYffUTnAxA6GkOkS81oN9hl17TDnApmuh3U33/A="],["knTFuE+OvMcov1L5YSNAFI6vsjH6E2Und2qumQSe6js="],["rIGEorLlfJgWWrZF8BKenN5+J5Ir0DylfQ3TwTxtmfI="],["whtdJkreC8F2w+fhzaR1AEfzVt9XCddkNYm/6Uiv/Fc="],["5Ay5/aksvYURnW0KAu0KSPawlh2E1WCvVkwWMUh3Ags="],["xjMimifVHglLP2T4dNaw+kiHki4xX5Upl/+18U+pM40="],["2cbq7WBlanJk4ZChVImEOWwemtCB4zxrdV/El+otjfo="],["JQJe5wVkBe3cgsTV8q25AFH9iJYl1zWpa6mJFbB4iRY="],["kH+73ndzMzZ3j8Jxf1Hd5xrfYh+EKYJ7pxxXxurrt0M="],["ik1VMBLA4FZ+pQOL/AZKlf+vWWA9LEsG3F7ljab5mKU="],["TV1gDjljLLSePerr/Lg0YhjDm3PHP7A7LZA7VoRzCOg="],["F2KvMKrZvPJpJoHpJAysKVR/78IG2dar4fBaQz88ies="],["Lox2xEn8xccCYgGwK9hLUFrG2HGJK1YnwrN5fhyxK54="],["8JxIQHENoSjUfL/rMb9kx3tTB+F5B3sRG94vf6dmnuc="],["UZTEze+4vlmjI1WV0jxki0C5UylQoEgHlEnLhLyBN/c="]],"mix:mix-b":[["piIWyac1JoGcFQMJCfxi+JKTiV1gGpYI0xZtnwHZcb4="],["btVRgYP+AKoyvAQ1pZR2SJWpZbnfSdjKF/z3QR15aVo="],["85xDvtJrk8IKYloRHg97NUYHi6oWEyCM2FsMTuSlRho="],["i1NR6M6t3JtsElEstsgdpCBCp6/rPLFxGj+RBDf5cy4="],["f6xfCuNub2kmZUNuBBPQcoo4soq7TRJeX/CaoBFs2FU="],["FwKNybKj6ZL3xjee4usE2MDTwBGvmnqN8aAmiUiS/jw="],["5cpRXY54ZLX8leL/aN4NIJ2ZEM6KSCOrrfJl08JlCKI="],["WrHKlf58VsosDeccmcFRUEFTvYI+jhKETQp8/IgMl5c="],["2etTo9qa7xyAxSQVQkQKu3KJjfMgYrxYWmYnjzPUR34="],["hTkMjP8OLWyCNz73DEmer22kn6OxbBYaywNnt9JCQlk="],["EoO9465hfsFGQ9FGkcVbzSgkdVFyyr86xTvYVwbLLVY="],["evV7ErH2Yfw/dHDmvE6psYopcBW4j6LlE/wFv+xH6DA="],["JJRjJtS9CT2ijsvBwrJfGxVExSaYb8MzT7ZKcNgeiqE="],["PD/AkiCjNh3lq5cAt8pq1caDkJkiGaPn8LAEgnnjp5s="],["EgZzMTIp9JM/T1iltFtPuDr5Bq1lAiCnE8ti1OOKYn0="],["Vy1XQL4JdRmM90TfufU58pyhZsXQO89i54WrUT+4a5A="],["L+YAItkggoYEceX5KfkkstU+3VQpr0tCCFHUtDZqhps=","BQbOuEDS/fQoPIYAoDvyHEnse5DB7iajeR3iqY6qLGw="],["8bvKWcZiHJzmGZcId2Lpy53v47Co27gD3RGGhYndMxo="],["/HBXr5u+3goqknmvZkNmwownYyC5Ew+D31NUQnjar8I="],["RKvhW3MeGBczfg9VErabs7PXqbJfy+jsN3dCS9xRO/c=","UEzcdGMj3getvIn3LY9WepR48tfZ1ZSeoDJN3R1K+4w="]]},"vault":{"salt":"wszk6nTStRXCkGbgOVfxfQ==","iv":"+Ku9KUui6FEXdsGp","ciphertext":"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"}};
+  const DATA = {"app":{"name":"Englisch Klasse 8","title":"Englisch lernen","kicker":"KLASSE 8 · GYMNASIUM NRW","lead":"Kurze Erklärungen und Tests zu Gerund, British und American English sowie Simple Present und Present Progressive. Tippe eine Antwort an und bekommst sofort Bescheid, ob sie stimmt.","footer":"Tipp fürs iPhone: In Safari auf „Teilen“ tippen und „Zum Home-Bildschirm“ wählen. Dann öffnet sich die Übung wie eine eigene App.","storageKey":"englisch-k8-progress-v1"},"topics":[{"id":"gerund","title":"Gerund","teaser":"-ing als Nomen: Subjekt, nach Verben und nach Präpositionen","lessonTitle":"Die 4 Regeln","tables":[],"lesson":[{"heading":"Was ist ein Gerund?","body":"Ein Gerund ist ein Verb mit -ing, das wie ein Nomen benutzt wird. Im Deutschen übersetzt man es oft mit „zu“ + Infinitiv: Living here is nice = Hier zu leben ist schön.","examples":[]},{"heading":"1. Als Subjekt (am Satzanfang)","body":"Steht die -ing-Form ganz vorne und ist das Subjekt des Satzes, brauchst du das Gerund.","examples":["Living in America is cool.","Meeting up isn't easy."]},{"heading":"2. Nach bestimmten Verben","body":"Nach Verben wie enjoy, miss, keep, stop, finish, imagine und don't mind folgt das Gerund — nicht to + Infinitiv.","examples":["I miss seeing my old friends.","Matt enjoys being in Pittsburgh."]},{"heading":"3. Nach Präpositionen","body":"Nach at, of, about, for, in, on, with, without und auch nach to in look forward to steht immer das Gerund. Hier ist to eine Präposition, kein Teil des Infinitivs.","examples":["Lena is afraid of changing too much.","I'm looking forward to seeing Matt."]},{"heading":"4. Nach Adjektiv + Präposition","body":"Wendungen wie good at, afraid of, interested in, tired of und worried about verlangen ebenfalls das Gerund.","examples":["I'm good at playing football.","Matt isn't worried about being bored."]},{"heading":"Rechtschreibung","body":"Wie beim Present Progressive: ein stummes -e am Ende fällt weg (live → living). Nach kurzem Vokal wird der Konsonant verdoppelt (get → getting).","examples":[]},{"heading":"Tipp für Lückentexte","body":"Frage in dieser Reihenfolge: Steht das Verb am Satzanfang? Steht davor enjoy, miss, stop, finish oder don't mind? Steht davor eine Präposition? Steht davor Adjektiv + Präposition? Wenn ja: Gerund. Wenn nein, oft to + Infinitiv (want, decide, hope, promise, would like).","examples":[]}],"quizzes":[{"id":"gerund-subject","title":"Subjekt und nach Verben","blurb":"8 Aufgaben · richtige -ing-Form wählen","questions":[{"prompt":"_____ (swim) in the sea is refreshing.","options":["Swimming","To swim","Swim","Swiming"]},{"prompt":"Tom doesn't mind _____ (get) up early.","options":["getting","to get","get","geting"]},{"prompt":"_____ (learn) the guitar takes time.","options":["Learning","To learn","Learn","Learns"]},{"prompt":"Emma enjoys _____ (dance) at parties.","options":["dancing","to dance","dance","danceing"]},{"prompt":"I miss _____ (live) next to the park.","options":["living","to live","live","liveing"]},{"prompt":"They keep _____ (make) the same mistake.","options":["making","to make","make","makeing"]},{"prompt":"_____ (eat) too much chocolate isn't healthy.","options":["Eating","To eat","Eat","Eats"]},{"prompt":"She finished _____ (do) her homework.","options":["doing","to do","do","done"]}]},{"id":"gerund-prep","title":"Nach Präpositionen","blurb":"8 Aufgaben · Gerund nach of, to, in, for …","questions":[{"prompt":"Paul is afraid of _____ (fail) the test.","options":["failing","to fail","fail","failling"]},{"prompt":"We are looking forward to _____ (spend) the weekend together.","options":["spending","to spend","spend","spent"]},{"prompt":"He is interested in _____ (join) the school club.","options":["joining","to join","join","joins"]},{"prompt":"Are you tired of _____ (sit) in this classroom?","options":["sitting","to sit","sit","siting"]},{"prompt":"She thinks about _____ (move) to Canada.","options":["moving","to move","move","moveing"]},{"prompt":"I'm good at _____ (draw) animals.","options":["drawing","to draw","draw","drawwing"]},{"prompt":"They left without _____ (say) goodbye.","options":["saying","to say","say","said"]},{"prompt":"Thank you for _____ (come) to my party.","options":["coming","to come","come","came"]}]},{"id":"gerund-or-inf","title":"Gerund oder to-Infinitiv","blurb":"10 Aufgaben · typische Klassenarbeitsfrage","questions":[{"prompt":"I want _____ (buy) a new phone.","options":["to buy","buying","buy","bought"]},{"prompt":"She enjoys _____ (bake) cakes.","options":["baking","to bake","bake","bakes"]},{"prompt":"We decided _____ (take) the train.","options":["to take","taking","take","took"]},{"prompt":"He finished _____ (pack) his bag.","options":["packing","to pack","pack","packed"]},{"prompt":"I'd like _____ (visit) my cousins.","options":["to visit","visiting","visit","visited"]},{"prompt":"Please stop _____ (shout).","options":["shouting","to shout","shout","shouted"]},{"prompt":"They hope _____ (arrive) on time.","options":["to arrive","arriving","arrive","arrived"]},{"prompt":"I don't mind _____ (walk) in the rain.","options":["walking","to walk","walk","walked"]},{"prompt":"She promised _____ (help) us tomorrow.","options":["to help","helping","help","helps"]},{"prompt":"Imagine _____ (win) the lottery.","options":["winning","to win","win","won"]}]},{"id":"gerund-transform","title":"Sätze umformen","blurb":"6 Aufgaben · Satz mit Gerund wählen","questions":[{"prompt":"Wähle die richtige Umformung: It is fun to ride a bike.","options":["Riding a bike is fun.","To riding a bike is fun.","Ride a bike is fun."]},{"prompt":"It is easy to forget names.","options":["Forgetting names is easy.","Forget names is easy.","To forgetting names is easy."]},{"prompt":"It is important to be on time.","options":["Being on time is important.","Be on time is important.","To being on time is important."]},{"prompt":"I look forward _____ my friends. (see)","options":["I look forward to seeing my friends.","I look forward to see my friends.","I look forward seeing my friends."]},{"prompt":"She is afraid of _____ her keys. (lose)","options":["She is afraid of losing her keys.","She is afraid of to lose her keys.","She is afraid of lose her keys."]},{"prompt":"He is good at _____ bikes. (fix)","options":["He is good at fixing bikes.","He is good at to fix bikes.","He is good at fix bikes."]}]}]},{"id":"be-ae","title":"British & American English","teaser":"Wortschatz und typische Rechtschreibunterschiede","lessonTitle":"BE oder AE?","tables":[{"columns":["British","American","Deutsch"],"rows":[["flat","apartment","Wohnung"],["holiday(s)","vacation","Urlaub / Ferien"],["football","soccer","Fußball"],["cinema","movie theater","Kino"],["shop","store","Geschäft / Laden"],["shopping centre","shopping mall","Einkaufszentrum"],["lift","elevator","Fahrstuhl"],["rubbish","garbage / trash","Müll"],["pavement","sidewalk","Bürgersteig"],["torch","flashlight","Taschenlampe"]]}],"lesson":[{"heading":"Wortschatz","body":"In Klassenarbeiten musst du oft das britische oder amerikanische Pendant einsetzen. Lerne die Paare zusammen, nicht einzeln.","examples":[]},{"heading":"Rechtschreibung","body":"Häufig abgefragt: BE -our/-re/-ise (colour, centre, organise, neighbourhood) gegen AE -or/-er/-ize (color, center, organize, neighborhood). Dieselbe Regel gilt auch für favourite/favorite.","examples":[]}],"quizzes":[{"id":"beae-words","title":"Wortschatz BE ↔ AE","blurb":"10 Aufgaben · das passende Wort wählen","questions":[{"prompt":"British English: flat → American English?","options":["apartment","lift","store","vacation"]},{"prompt":"American English: store → British English?","options":["shop","flat","cinema","pavement"]},{"prompt":"Was ist das amerikanische Wort für football?","options":["soccer","football","pavement","elevator"]},{"prompt":"Was ist das britische Wort für elevator?","options":["lift","flat","torch","rubbish"]},{"prompt":"British English: holiday → American English?","options":["vacation","cinema","sidewalk","garbage"]},{"prompt":"American English: movie theater → British English?","options":["cinema","shop","mall","torch"]},{"prompt":"Welches amerikanische Wort passt zu rubbish?","options":["garbage","pavement","lift","shop"]},{"prompt":"American English: sidewalk → British English?","options":["pavement","torch","flat","holiday"]},{"prompt":"Was ist das amerikanische Wort für torch?","options":["flashlight","elevator","soccer","apartment"]},{"prompt":"British English: shopping centre → American English?","options":["shopping mall","cinema","pavement","storey"]}]},{"id":"beae-spelling","title":"Rechtschreibung BE / AE","blurb":"8 Aufgaben · -our/-or, -re/-er, -ise/-ize","questions":[{"prompt":"Wie schreibt man colour auf American English?","options":["color","colour","coler","collor"]},{"prompt":"Wie schreibt man center auf British English?","options":["centre","center","centere","centré"]},{"prompt":"Welche Schreibweise von organise ist amerikanisch?","options":["organize","organise","organice","organeese"]},{"prompt":"Wie schreibt man neighbourhood auf American English?","options":["neighborhood","neighbourhood","nieghborhood","neighborhoud"]},{"prompt":"Wie schreibt man favourite auf American English?","options":["favorite","favourite","favorit","favourit"]},{"prompt":"Welche Schreibweise ist britisch?","options":["neighbourhood","neighborhood","neighborhod","neighbourhod"]},{"prompt":"In American English schreibt man:","options":["center","centre","centrum","centar"]},{"prompt":"Welche Schreibweise ist britisch?","options":["organise","organize","organiz","organisze"]}]}]},{"id":"tenses","title":"Simple Present & Progressive","teaser":"Gewohnheit oder genau jetzt? Signalwörter und Zustandsverben","lessonTitle":"Welche Zeitform?","tables":[],"lesson":[{"heading":"Simple Present","body":"Für Dinge, die immer, regelmäßig oder oft passieren: Hobbys, Routinen, Fakten. Signalwörter: always, usually, often, sometimes, never, every day. Form: Grundform, bei he/she/it kommt -s dazu.","examples":["Matt usually lives in Pittsburgh."]},{"heading":"Present Progressive","body":"Für Handlungen, die genau jetzt oder nur vorübergehend passieren. Signalwörter: now, at the moment, look!, listen!. Form: am/is/are + Verb-ing.","examples":["Right now, I am reading a grammar book."]},{"heading":"Zustandsverben","body":"Verben wie like, love, hate, want, know und understand stehen fast nie im Progressive, sondern im Simple Present. Richtig: I like pizza. Falsch: I am liking pizza.","examples":[]}],"quizzes":[{"id":"tense-form","title":"Die richtige Zeitform","blurb":"8 Aufgaben · Simple Present oder Progressive","questions":[{"prompt":"Look! The dog _____ (chase) the cat.","options":["is chasing","chases","chase","chasing"]},{"prompt":"My mum usually _____ (drink) tea in the morning.","options":["drinks","is drinking","drink","drinking"]},{"prompt":"Quiet! The students _____ (take) a test at the moment.","options":["are taking","take","takes","taking"]},{"prompt":"We sometimes _____ (go) to the swimming pool on Fridays.","options":["go","are going","goes","going"]},{"prompt":"Right now, Ben _____ (make) a sandwich.","options":["is making","makes","make","is makeing"]},{"prompt":"She _____ (know) a lot about dinosaurs.","options":["knows","is knowing","know","knowing"]},{"prompt":"Listen! Someone _____ (knock) at the door.","options":["is knocking","knocks","knock","knocking"]},{"prompt":"I _____ (want) a glass of water.","options":["want","am wanting","wants","wanting"]}]},{"id":"tense-neg-q","title":"Verneinungen und Fragen","blurb":"8 Aufgaben · don't/doesn't, am/is/are not, Do/Does/Is","questions":[{"prompt":"Bilde die Verneinung: She plays tennis every Monday.","options":["She doesn't play tennis every Monday.","She doesn't plays tennis every Monday.","She isn't play tennis every Monday."]},{"prompt":"Bilde die Frage: They are watching the match.","options":["Are they watching the match?","Do they watching the match?","Are they watch the match?"]},{"prompt":"Bilde die Verneinung: He is wearing a blue jacket.","options":["He isn't wearing a blue jacket.","He doesn't wearing a blue jacket.","He isn't wear a blue jacket."]},{"prompt":"Bilde die Frage: You go to school by bike.","options":["Do you go to school by bike?","Are you go to school by bike?","Does you go to school by bike?"]},{"prompt":"Bilde die Verneinung: We always have breakfast at 7.","options":["We don't always have breakfast at 7.","We aren't always have breakfast at 7.","We don't always has breakfast at 7."]},{"prompt":"Bilde die Frage: Lisa is talking to her teacher.","options":["Is Lisa talking to her teacher?","Does Lisa talking to her teacher?","Is Lisa talk to her teacher?"]},{"prompt":"Bilde die Frage: He gets up at 6 every day.","options":["Does he get up at 6 every day?","Does he gets up at 6 every day?","Is he get up at 6 every day?"]},{"prompt":"Bilde die Verneinung: The children are running in the hall.","options":["The children aren't running in the hall.","The children don't running in the hall.","The children aren't run in the hall."]}]},{"id":"tense-cloze","title":"Lückentext","blurb":"6 Lücken in einem zusammenhängenden Text","questions":[{"prompt":"Lücke 1: I usually _____ early. (get up)","hint":"Signalwort usually","passage":"Hi, I'm Jake. I usually ___ early. Right now I ___ breakfast in the kitchen. My sister always ___ to music in the morning, but today she ___ our dad in the garden. Listen! The neighbour's dog ___ again. I ___ why it is so loud every day.","options":["get up","gets up","am getting up","getting up"]},{"prompt":"Lücke 2: Right now I _____ breakfast. (have)","hint":"Signalwort Right now","passage":"Hi, I'm Jake. I usually ___ early. Right now I ___ breakfast in the kitchen. My sister always ___ to music in the morning, but today she ___ our dad in the garden. Listen! The neighbour's dog ___ again. I ___ why it is so loud every day.","options":["am having","have","has","having"]},{"prompt":"Lücke 3: My sister always _____ to music. (listen)","hint":"Signalwort always, she","passage":"Hi, I'm Jake. I usually ___ early. Right now I ___ breakfast in the kitchen. My sister always ___ to music in the morning, but today she ___ our dad in the garden. Listen! The neighbour's dog ___ again. I ___ why it is so loud every day.","options":["listens","is listening","listen","listening"]},{"prompt":"Lücke 4: but today she _____ our dad. (help)","hint":"today = gerade / vorübergehend","passage":"Hi, I'm Jake. I usually ___ early. Right now I ___ breakfast in the kitchen. My sister always ___ to music in the morning, but today she ___ our dad in the garden. Listen! The neighbour's dog ___ again. I ___ why it is so loud every day.","options":["is helping","helps","help","helping"]},{"prompt":"Lücke 5: Listen! The neighbour's dog _____ again. (bark)","hint":"Signalwort Listen!","passage":"Hi, I'm Jake. I usually ___ early. Right now I ___ breakfast in the kitchen. My sister always ___ to music in the morning, but today she ___ our dad in the garden. Listen! The neighbour's dog ___ again. I ___ why it is so loud every day.","options":["is barking","barks","bark","barking"]},{"prompt":"Lücke 6: I _____ why it is so loud every day. (not understand)","hint":"understand ist ein Zustandsverb","passage":"Hi, I'm Jake. I usually ___ early. Right now I ___ breakfast in the kitchen. My sister always ___ to music in the morning, but today she ___ our dad in the garden. Listen! The neighbour's dog ___ again. I ___ why it is so loud every day.","options":["don't understand","am not understanding","doesn't understand","not understand"]}]}]},{"id":"mix","title":"Mix-Test","teaser":"Alle Themen zusammen, wie in einer Klassenarbeit","lessonTitle":"Vor dem Test","tables":[],"lesson":[{"heading":"So läuft der Mix-Test","body":"Hier kommen Gerund, British/American English und die Zeitformen in einem Durchgang. Test A ist etwas kürzer, Test B länger und näher an einer Klassenarbeit: Lücken, Umformungen, Gerund oder Infinitiv, Rechtschreibung sowie Fragen und Verneinungen.","examples":[]},{"heading":"Tipp","body":"Lies zuerst die Signalwörter und die Wörter direkt vor der Lücke. Bei BE/AE schau genau, ob nach dem britischen oder dem amerikanischen Wort bzw. der Schreibweise gefragt ist.","examples":[]}],"quizzes":[{"id":"mix-a","title":"Übungstest A","blurb":"16 Aufgaben · alle drei Themen","questions":[{"prompt":"_____ (travel) around the world is her dream.","options":["Travelling","To travel","Travel","Traveelling"]},{"prompt":"My parents don't mind _____ (drive) me to school.","options":["driving","to drive","drive","driveing"]},{"prompt":"Sam enjoys _____ (take) photos of animals.","options":["taking","to take","take","takes"]},{"prompt":"She is good at _____ (speak) French.","options":["speaking","to speak","speak","spoken"]},{"prompt":"We are looking forward to _____ (have) a picnic.","options":["having","to have","have","had"]},{"prompt":"Thank you for _____ (carry) my bag.","options":["carrying","to carry","carry","carried"]},{"prompt":"Was ist das britische Wort für apartment?","options":["flat","lift","shop","pavement"]},{"prompt":"Was ist das amerikanische Wort für cinema?","options":["movie theater","shop","soccer","flashlight"]},{"prompt":"Welches amerikanische Wort passt zu rubbish?","options":["garbage","pavement","lift","holiday"]},{"prompt":"American English: sidewalk → British English?","options":["pavement","torch","store","vacation"]},{"prompt":"Wie schreibt man colour auf American English?","options":["color","colour","coler","collar"]},{"prompt":"Look! James _____ (climb) the tree.","options":["is climbing","climbs","climb","climbing"]},{"prompt":"We often _____ (eat) pasta on Fridays.","options":["eat","are eating","eats","eating"]},{"prompt":"She _____ (hate) getting up late.","options":["hates","is hating","hate","hating"]},{"prompt":"At the moment the kids _____ (play) outside.","options":["are playing","play","plays","playing"]},{"prompt":"Listen! The phone _____ (ring).","options":["is ringing","rings","ring","ringing"]}]},{"id":"mix-b","title":"Übungstest B","blurb":"20 Aufgaben · etwas anspruchsvoller","questions":[{"prompt":"_____ (sit) in the sun too long can be dangerous.","options":["Sitting","To sit","Sit","Siting"]},{"prompt":"He finished _____ (repair) his bike.","options":["repairing","to repair","repair","repaired"]},{"prompt":"I'm interested in _____ (become) a doctor.","options":["becoming","to become","become","became"]},{"prompt":"They left without _____ (close) the window.","options":["closing","to close","close","closed"]},{"prompt":"I want _____ (improve) my English.","options":["to improve","improving","improve","improved"]},{"prompt":"Please stop _____ (make) so much noise.","options":["making","to make","make","made"]},{"prompt":"She decided _____ (join) the choir.","options":["to join","joining","join","joins"]},{"prompt":"Imagine _____ (meet) a film star.","options":["meeting","to meet","meet","met"]},{"prompt":"British English: holiday → American English?","options":["vacation","cinema","apartment","garbage"]},{"prompt":"American English: elevator → British English?","options":["lift","flat","pavement","torch"]},{"prompt":"British English: torch → American English?","options":["flashlight","sidewalk","soccer","store"]},{"prompt":"Wie schreibt man neighbourhood auf American English?","options":["neighborhood","neighbourhood","nieghborhood","neighborhoud"]},{"prompt":"Welche Schreibweise ist amerikanisch?","options":["organize","organise","organice","organeese"]},{"prompt":"Wie schreibt man centre auf American English?","options":["center","centre","centere","centrum"]},{"prompt":"My uncle always _____ (watch) the news at 8.","options":["watches","is watching","watch","watching"]},{"prompt":"Right now I _____ (write) an e-mail.","options":["am writing","write","writes","am writeing"]},{"prompt":"They _____ the question. (not understand)","options":["don't understand","aren't understanding","doesn't understand","not understand"]},{"prompt":"Bilde die Frage: You go to the gym every week.","options":["Do you go to the gym every week?","Are you go to the gym every week?","Does you go to the gym every week?"]},{"prompt":"Bilde die Frage: She is doing her homework at the moment.","options":["Is she doing her homework at the moment?","Does she doing her homework at the moment?","Is she do her homework at the moment?"]},{"prompt":"Bilde die Verneinung: He is wearing a coat today.","options":["He isn't wearing a coat today.","He doesn't wearing a coat today.","He isn't wear a coat today."]}]}]}],"hashSalt":"WWGnqGAxIkQPInoKqh4yYw==","answerHashes":{"gerund:gerund-subject":[["qnly5Vs025Ou9HuEBdvJsl0k+/bNmtXjl2wvwkUQHm0="],["GsDyfz2JIqkJM5RYY3RlPMonNqJQDRH0te+R8/jFQ4I="],["mNiHqGm00Znjj5vvXDIcuRJ6Pc+m8tmOTREnzpJ2fI8="],["5FKhqtwHvaQTYYVsVG8VMKVsMsg5GEx9FOj1hs+Mdic="],["tasIBrpNpta1bvULLEQu4F9naLPMnn3tM0O7ZKKccJA="],["RNA8dlKS+W3FYpe9bDTFhn/+6BAsi4lsk9G9znc51FQ="],["0dNTr17FjNNYhFgddgUyXU94j7MGY2hIokvzajaH7Mk="],["mmVNIAzg4CWn9loK/Lqx9ZzAmG5GPA2CwGZVYgXNzZs="]],"gerund:gerund-prep":[["n3kudFHALz+XYXykTq8BAYpRdTNVI59WGzE4FzLNXR8="],["x0Vl2j4vpLf4h4bk7Z506CTdjWzN8fgtIqDa2ls3Fuo="],["xy75KaTZa5zOaN8wPuRrU8iKz8kzN30a6Y2gDfqZ5kI="],["GfwlhG9Tn3DdX47yQnJoX3qnEvfa3VD1uu3g+Q+SjRk="],["/yRmHpRC33mhJerXmYFgfS3+DpEqBC2pBCiVSX98lzg="],["dE2IO40FKfvES6lBypcdHh+uN/xDLQimZ6GtLtE5Ky4="],["qTPwpF5+sU+WwvhvsgjfwoSDa35UTKALT02xGG371ZY="],["IxHiSxFN8NLBNWqHiHQ+nW315ZApT+U47CEooTbQc4I="]],"gerund:gerund-or-inf":[["NEjq5vcm0blHhZu61RUeET5GPveaYxoNEw8YCCW+4Xk="],["XpwEVZQZ7Vk8VtRACiN29OW3V7IFVWsFxNhzit7bAPI="],["uwc+9c4gppgdphkFnOJPh4lTWkDPWhrwhE+M8s0QBgE="],["cTirwClv/THhIUvah4uUHbx0gTP3duN4Zv3KS10kCKA="],["hSV+uKYMAMggSv1H/tF0PGFmAlfqIpIBcohXP+UKJII="],["XcnrjLC5fBauS9SzFswQYKC9F3uyDuCOr5umxJDQD3M="],["9X+X84Q1oUAZTUIWb+h7FxfOSG5q65HPKcYKe+0AAsE="],["riH4Rl6OKotSObaWZ7w3Z/y/4fjd/brmZgpx2L7LR/E="],["0yuyVx84Qas2PRiDF2uuf6ZIw72oS6PjuakezPmICd4="],["PwK1mYag1VkpAjRdtejwWJIkIaODATBM+YQRPD08MEQ="]],"gerund:gerund-transform":[["1NAWtnvf16x0O0sUtTTFRTi1PLmFtv8iQLgjgKkEn/4="],["CHjaYzDbfvFxJ6thZwn1ozc/VA4V9A+QR8UiHiTh5wM="],["MBUgP7FbZSeui2BEOeFtz5a5Rap/mk5otjVzp32FB/0="],["fKdPHIkrXYcQJP9aIYaZ7gtlfk3VDp09S82Ih1jFtMU="],["K7a6PKtdkGScsgc+YlMrppctTO1YXqWUCpDXcemHlrU="],["iXvRWAKmrikp8gHmoFxT+Lhkc8qAik8d4nfK0GNnaaA="]],"be-ae:beae-words":[["eUbKHxbkZENEfQLigq3FlFKyo7OopgnTrpR9ElByfKk="],["CtJtpMPkSlsWDGi/CwFHi3bv1ITCJD9GcxGXOnq2L84="],["86BhGfCjSX6AFNawqnRqLcowNSZifswweBFdR79upQI="],["ZDkkK9cttJ3gGwK2Zif6iAVvHqijPKXQr6etjjlh+eA="],["ZE+U2R1z90gx+PrnXPKBmtv9R6PlsJSTKoGz0lzXOI8="],["LIJ2DcwxUp5oeMotgsC5xS4omXAjc+V5DKZawgpAPE4="],["5gUBPfY8Jf8nClwa+7wHC8/HIUf1cJBrlTHnKJCxbvw="],["+hmAuSyolX/GNN+A30OP1BYWJz3IuyPchlltXAOP8fM="],["wpH8nhX8gicxLFAxSwitll2lFPvDl0FVwcbsP8BNJFA="],["UnEXuzU+whUSTS96Qw5vQlZ85sL8pze5be38P66H1AQ="]],"be-ae:beae-spelling":[["9KLgkjhSIBQp7gMLGr57ZYL7YRQ8FY/3US/hE7oqbIE="],["3Ij/j0oBOjjjzIQtoyYXbyJXdqelgduE0Q8jx3WzWLo="],["RLePHJ/IuLgtZeD9O31Zn3UDJacBlBnn08nleyN1YO4="],["nPYimD4+TFmD0t5v+/bZaxlAOJARIkTfyUiej6XfWIM="],["ZfhxAJp9Xscbu20xy6B/a65yi6wLjhje71xpBr+HLVM="],["NVKqvFKk3zHvCuwN8YoCiS++vGe+BOexm2fetayTv3s="],["cnky4wIR1ebjy078JmcnoG/6h//Y6frwhyEUXu2NZN4="],["/F9ZF7H/qjwjfVUROPOaFBP+xtH7VZYmasanh09EPHo="]],"tenses:tense-form":[["FnmfrRSOne6BJNvlknwhEBE8GdrkekDHHkjzJ9ERR4A="],["BtI4ghWl0hiBkyT90K9WvqY6EysjicJl3kILLw50SsA="],["3JrbT1GYnz98MTAcsl/ARzcbrMTzEIHat56VzOPSsjg="],["FU3k2UY0ZDPc3DFqFa2Y47yuAi0nAMqXKQkCdElFPLM="],["98le6J23zrTXop9x6aDuIJscMXI1HhyNlt9C2Jd6NdQ="],["VYuk6aYsFZrvRK7It5vf7onwGbAkeIgx5zW+Rv/5/Ow="],["g2M8yQbPvrXh1CRgXJO0O60mrdmvc2as9YNylFQLIDM="],["1jx9ImaKn0uWLXEfY7jnoGA0gGzKueVNTM7cULD9I0E="]],"tenses:tense-neg-q":[["qHSAKrAJbx33Zu6TvX/CRFD9xpRk18lUhLdoIisIb50="],["+0db5nF7plBtRM77O0qO9uCCiC5R1rvRCRjLoI4+2mA="],["PHFmRdCjwYVcRdZXoDpZgExj0ukTioerjVSH97QLnGg=","WWePqbxgJZW3Ns7PdvpjuyhlbsJRZ8vzg72gB1H/Zko="],["vC5px4GhdKBghWmgcWis9RN39+UghUZFKET2I5aNfq0="],["JTW1baGCAUViT7i3wfUwmRsoG1gV+ihQePwx5cIE4/4=","DzVWd3s3LaxkXw3kKOJmk0lR6b0Enj0HIoLqa9FUIas="],["tAAcUKxzpPLf6eqsy97VgiqpW7NSlDEn2lbrYQMhYVs="],["cXG1DXHqTCmJWRZESbqXO7ZMqclOADWbkafDfzu7T1g="],["wx+kYz9r/dJvsJYgSxLV1wlvOxsrlS1UPo/jyTK0Lfw=","a3D1OPDYqAY/5bf3pcNrwFzwPklxkCDQSaIjRMYDG4w="]],"tenses:tense-cloze":[["WuJ7lUXChdauG0bE9hfldTK50sQp8UmsEdw/eFD+q0o="],["5XzgDfCoI9rWKqgnigJUvod0gFNWXU/f5SKTJkQ4jvQ="],["mY4SVh0hBNH48CHSieeID4br0OT/RULXGrWkmczViE4="],["Kbz/9xDqb90nZrFxC7NRiIWyxOXzcydwzFernCzCe/w="],["pBAglYrqCqjqnOf7BF3+QRR9nl8Kup/GYjo1fZQuZGg="],["9FRIqF+5hTOAXKq2QUAqvBMrX//a/48HhanT0vv66e0=","nRimbR5aB7upifnyBQIFNlHhfDiJJ7n+4dlGhwQV7u8="]],"mix:mix-a":[["HNcQaYdebZNEDNwjf65QiaDLKdtvotMdSkygSbd3X8E=","ym+3aa1UwnUAx+GyVZ64eTrxnhhQDUnDXpEa0/eL4/Y="],["mqyEt7SRNtxp7Y+U2DruvjwIwVPhqJ+uXzrOavDqpxA="],["VtQ2LS4R6l7KrvdYWPrdB+YdV/gmr9CoNORY4QcRCKY="],["s+evcaXgo6I/wji8DjdlDPEpsZejyJCjMS22UC8W4hI="],["JHh2t8VSG+M4K62h9TOzDkdQ5A+2e1sceUG/ZAxeLro="],["tbgSYFdIbgfDjfE7J76Gy/IQipgEW2kVAKeCE1UiFTs="],["MbBiTx2sqejjgjMSZj0wwtIAK9LZBxmW++PAv4us4RM="],["G25M6a7UaAXsnffDzmyCbMC8CVfBTcHdqBmBhRTIG7g="],["5gUBPfY8Jf8nClwa+7wHC8/HIUf1cJBrlTHnKJCxbvw="],["+hmAuSyolX/GNN+A30OP1BYWJz3IuyPchlltXAOP8fM="],["9KLgkjhSIBQp7gMLGr57ZYL7YRQ8FY/3US/hE7oqbIE="],["QWvBPPPx3yJuu2yxxKEU6jtHB/whg8ntmK8DhIdzCAM="],["bdeGA7z7WNJw3GyVlQmFukgP4r6ro2bG3z0w60v4Eqg="],["O2DH6Up9cgSi4nTYGbSWgDMRfDtqMI4qQjEat0jVj8c="],["Eyitluz2ashe04eyqSZyHqnzu6wuKCsz59bhI2Ur74k="],["BhalZ5jAJcsxF0N1XiqhUZj42D1P+FmVHvbV3HVJDX8="]],"mix:mix-b":[["GfwlhG9Tn3DdX47yQnJoX3qnEvfa3VD1uu3g+Q+SjRk="],["aM422ah1+riz6+ftH/7epa1s+ZjrLnY3Qt8BMXsi7yU="],["3taG6me7nghhmYqN0ZQN3kgylFRCYykGRzIDSaKotj4="],["GRcBnuqU4tg8ymXPU+dJGw8bkqcA7yi59pdyz31h6Hk="],["X/phXbGNVM0fauPHyFyrIVbwql8I/Lk3qC9wBokENsg="],["RNA8dlKS+W3FYpe9bDTFhn/+6BAsi4lsk9G9znc51FQ="],["/BZJiMQ9rg6bFdATzNAO95wTIj+3v5/hRiflDxdDK+o="],["ul0cOVYTJ6QjToYc9+aVFn6hxIIWmUzRrVIcs2budzw="],["ZE+U2R1z90gx+PrnXPKBmtv9R6PlsJSTKoGz0lzXOI8="],["ZDkkK9cttJ3gGwK2Zif6iAVvHqijPKXQr6etjjlh+eA="],["wpH8nhX8gicxLFAxSwitll2lFPvDl0FVwcbsP8BNJFA="],["nPYimD4+TFmD0t5v+/bZaxlAOJARIkTfyUiej6XfWIM="],["RLePHJ/IuLgtZeD9O31Zn3UDJacBlBnn08nleyN1YO4="],["cnky4wIR1ebjy078JmcnoG/6h//Y6frwhyEUXu2NZN4="],["FcdSfKMZvvYxoeLt23XzyS8PXaZLlw5QigG6NHdiiTs="],["Vd4EuosyszKtmbaiyx+D2q0H+6G+8y6zU1/JMFNXexk="],["9FRIqF+5hTOAXKq2QUAqvBMrX//a/48HhanT0vv66e0=","nRimbR5aB7upifnyBQIFNlHhfDiJJ7n+4dlGhwQV7u8="],["zt6XVZyedD2lwt3umfwR4OGVjarICSX34FHeVNRjfFo="],["7zziJXIYBmjVewi+Rv5VU9MnugpG+vGybfcc5HImOjI="],["Qf5jkbQgrgdc0ZC9jemmMMxQKxrp2KErP+FY1j8n7gc=","oEViz+GFVW74lA/rfK8SAIu+DNF+D9DxGJNHptMv8tM="]]},"vault":{"salt":"3Mrr3NZFGqe3flb9XWSk4Q==","iv":"wZ6xIUkDph6y2/eP","ciphertext":"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"}};
 (function () {
-  const STORAGE_KEY = "englisch-k8-progress-v1";
+  const meta = DATA.app;
+  const STORAGE_KEY = meta.storageKey;
   const ITERATIONS = 200000;
   const topics = DATA.topics;
-  const vocabRows = DATA.vocabRows;
   const hashSalt = DATA.hashSalt;
   const answerHashes = DATA.answerHashes;
   const vault = DATA.vault;
+  const LOG_KEY = STORAGE_KEY + "__attempts";
+  const MANY_ATTEMPTS = 3;
 
   let screen = { name: "home" };
   let progress = loadProgress();
@@ -276,6 +332,9 @@ label.pw {
   let solutions = null;
   let pwError = "";
   let pwBusy = false;
+  let resetConfirm = false;
+  let integrity = { ready: false, firstUse: null, counter: 0, lastLogCount: 0, lastLogWrite: null, parentResetAt: null, wipeDetectedAt: null, warnings: [], sources: { ls: false, cookie: false, idb: false } };
+  let integrityQueue = Promise.resolve();
 
   function loadProgress() {
     try {
@@ -288,6 +347,310 @@ label.pw {
   }
   function saveProgress(next) {
     try { localStorage.setItem(STORAGE_KEY, JSON.stringify(next)); } catch (e) {}
+  }
+  function loadLog() {
+    try {
+      const raw = localStorage.getItem(LOG_KEY);
+      if (!raw) return { version: 1, attempts: [] };
+      const parsed = JSON.parse(raw);
+      if (parsed && Array.isArray(parsed.attempts)) return parsed;
+    } catch (e) {}
+    return { version: 1, attempts: [] };
+  }
+  function saveLog(log) {
+    try { localStorage.setItem(LOG_KEY, JSON.stringify(log)); } catch (e) {}
+  }
+  function clearLog() {
+    try { localStorage.removeItem(LOG_KEY); } catch (e) {}
+  }
+  function taskId(topicId, quizId, index) {
+    return topicId + ":" + quizId + ":" + index;
+  }
+  function attemptsFor(id) {
+    return loadLog().attempts.filter(function (a) { return a.taskId === id; });
+  }
+  function recordAttempt(topicId, quizId, index, given, correct) {
+    const log = loadLog();
+    const id = taskId(topicId, quizId, index);
+    const n = log.attempts.filter(function (a) { return a.taskId === id; }).length + 1;
+    log.attempts.push({
+      taskId: id,
+      topicId: topicId,
+      quizId: quizId,
+      index: index,
+      at: new Date().toISOString(),
+      given: String(given == null ? "" : given),
+      correct: !!correct,
+      attempt: n
+    });
+    saveLog(log);
+    queueIntegrity({ bump: false, rerender: false });
+    return n;
+  }
+  function officialFirstScore(topicId, quizId, total) {
+    let correct = 0;
+    for (let i = 0; i < total; i++) {
+      const first = attemptsFor(taskId(topicId, quizId, i))[0];
+      if (first && first.correct) correct++;
+    }
+    return correct;
+  }
+  function formatTime(iso) {
+    try {
+      return new Date(iso).toLocaleString("de-DE", {
+        timeZone: "Europe/Berlin",
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit"
+      }) + " (Europa/Berlin)";
+    } catch (e) {
+      return iso || "";
+    }
+  }
+  function sentinelCookieName() {
+    return "la_i_" + String(STORAGE_KEY).replace(/[^a-zA-Z0-9]/g, "").slice(-28);
+  }
+  function sentinelCookiePath() {
+    try {
+      const p = location.pathname || "/";
+      const i = p.lastIndexOf("/");
+      return i <= 0 ? "/" : p.slice(0, i + 1);
+    } catch (e) {
+      return "/";
+    }
+  }
+  function parseSentinel(raw) {
+    if (!raw) return null;
+    try {
+      const obj = typeof raw === "string" ? JSON.parse(raw) : raw;
+      if (!obj || !obj.firstUse) return null;
+      return {
+        v: 1,
+        firstUse: String(obj.firstUse),
+        counter: Number(obj.counter) || 0,
+        lastLogCount: Number(obj.lastLogCount) || 0,
+        lastLogWrite: obj.lastLogWrite || null,
+        parentResetAt: obj.parentResetAt || null,
+        wipeDetectedAt: obj.wipeDetectedAt || null,
+        written: obj.written && typeof obj.written === "object" ? obj.written : null
+      };
+    } catch (e) {
+      return null;
+    }
+  }
+  function readLsSentinel() {
+    try { return parseSentinel(localStorage.getItem(STORAGE_KEY + "__sentinel")); } catch (e) { return null; }
+  }
+  function writeLsSentinel(data) {
+    try { localStorage.setItem(STORAGE_KEY + "__sentinel", JSON.stringify(data)); return true; } catch (e) { return false; }
+  }
+  function readCookieSentinel() {
+    try {
+      const name = sentinelCookieName() + "=";
+      const parts = (document.cookie || "").split(";");
+      for (let i = 0; i < parts.length; i++) {
+        const p = parts[i].trim();
+        if (p.indexOf(name) === 0) return parseSentinel(decodeURIComponent(p.slice(name.length)));
+      }
+    } catch (e) {}
+    return null;
+  }
+  function writeCookieSentinel(data) {
+    try {
+      const maxAge = 60 * 60 * 24 * 730;
+      let c = sentinelCookieName() + "=" + encodeURIComponent(JSON.stringify(data));
+      c += "; Path=" + sentinelCookiePath() + "; Max-Age=" + maxAge + "; SameSite=Lax";
+      if (location.protocol === "https:") c += "; Secure";
+      document.cookie = c;
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+  function openIntegrityDb() {
+    return new Promise(function (resolve, reject) {
+      if (!window.indexedDB) return reject(new Error("no idb"));
+      const req = indexedDB.open("lern-app-integrity-v1", 1);
+      req.onupgradeneeded = function () {
+        const db = req.result;
+        if (!db.objectStoreNames.contains("sentinels")) db.createObjectStore("sentinels");
+      };
+      req.onsuccess = function () { resolve(req.result); };
+      req.onerror = function () { reject(req.error || new Error("idb")); };
+    });
+  }
+  function readIdbSentinel() {
+    return openIntegrityDb().then(function (db) {
+      return new Promise(function (resolve, reject) {
+        const tx = db.transaction("sentinels", "readonly");
+        const r = tx.objectStore("sentinels").get(STORAGE_KEY);
+        r.onsuccess = function () { resolve(parseSentinel(r.result)); };
+        r.onerror = function () { reject(r.error); };
+      });
+    }).catch(function () { return null; });
+  }
+  function writeIdbSentinel(data) {
+    return openIntegrityDb().then(function (db) {
+      return new Promise(function (resolve, reject) {
+        const tx = db.transaction("sentinels", "readwrite");
+        tx.objectStore("sentinels").put(data, STORAGE_KEY);
+        tx.oncomplete = function () { resolve(true); };
+        tx.onerror = function () { reject(tx.error); };
+      });
+    }).catch(function () { return false; });
+  }
+  function writeAllSentinels(data) {
+    const written = {
+      ls: writeLsSentinel(data),
+      cookie: writeCookieSentinel(data)
+    };
+    return writeIdbSentinel(data).then(function (ok) {
+      written.idb = !!ok;
+      return written;
+    });
+  }
+  function earliest() {
+    let out = null;
+    for (let i = 0; i < arguments.length; i++) {
+      const v = arguments[i];
+      if (v && (!out || v < out)) out = v;
+    }
+    return out;
+  }
+  function latest() {
+    let out = null;
+    for (let i = 0; i < arguments.length; i++) {
+      const v = arguments[i];
+      if (v && (!out || v > out)) out = v;
+    }
+    return out;
+  }
+  function buildWarnings(state, logCount, missing) {
+    const warnings = [];
+    if (missing.length) {
+      warnings.push({
+        level: "warn",
+        text: "Sicherungsdaten fehlen in: " + missing.join(", ") + ". Vermutlich wurden Website-Daten teilweise gelöscht."
+      });
+    }
+    const resetAfterLog = state.parentResetAt && (!state.lastLogWrite || state.parentResetAt >= state.lastLogWrite) && state.lastLogCount === 0;
+    if (logCount === 0 && state.lastLogCount > 0 && !state.parentResetAt) {
+      warnings.push({
+        level: "alert",
+        text: "Daten wurden zurückgesetzt/gelöscht am " + formatTime(state.wipeDetectedAt) + ". Zuletzt waren " + state.lastLogCount + " Versuche gespeichert" + (state.lastLogWrite ? " (letzter Eintrag " + formatTime(state.lastLogWrite) + ")" : "") + "."
+      });
+    } else if (logCount === 0 && state.lastLogCount > 0 && state.parentResetAt && state.wipeDetectedAt && state.wipeDetectedAt > state.parentResetAt) {
+      warnings.push({
+        level: "alert",
+        text: "Daten wurden zurückgesetzt/gelöscht am " + formatTime(state.wipeDetectedAt) + ". Zuletzt waren " + state.lastLogCount + " Versuche gespeichert" + (state.lastLogWrite ? " (letzter Eintrag " + formatTime(state.lastLogWrite) + ")" : "") + "."
+      });
+    } else if (logCount > 0 && state.lastLogCount > logCount && !resetAfterLog) {
+      warnings.push({
+        level: "alert",
+        text: "Daten wurden zurückgesetzt/gelöscht am " + formatTime(state.wipeDetectedAt) + ". Das Protokoll ist kürzer als zuvor (" + logCount + " statt " + state.lastLogCount + " Einträge)."
+      });
+    } else if (logCount === 0 && state.parentResetAt) {
+      warnings.push({
+        level: "info",
+        text: "Antwortprotokoll am " + formatTime(state.parentResetAt) + " in der Elternansicht zurückgesetzt."
+      });
+    } else if (logCount === 0) {
+      warnings.push({
+        level: "info",
+        text: "Protokoll leer seit erstem Start am " + formatTime(state.firstUse) + "."
+      });
+    }
+    return warnings;
+  }
+  function applyIntegrity(opts) {
+    opts = opts || {};
+    const now = new Date().toISOString();
+    return readIdbSentinel().then(function (idbData) {
+      const ls = readLsSentinel();
+      const cookie = readCookieSentinel();
+      const idb = idbData;
+      const found = [ls, cookie, idb].filter(Boolean);
+      const firstRun = found.length === 0;
+      const previously = { ls: false, cookie: false, idb: false };
+      found.forEach(function (s) {
+        if (s.written) {
+          if (s.written.ls) previously.ls = true;
+          if (s.written.cookie) previously.cookie = true;
+          if (s.written.idb) previously.idb = true;
+        }
+      });
+      const missing = [];
+      if (previously.ls && !ls) missing.push("localStorage");
+      if (previously.cookie && !cookie) missing.push("Cookie");
+      if (previously.idb && !idb) missing.push("IndexedDB");
+
+      let firstUse = earliest(ls && ls.firstUse, cookie && cookie.firstUse, idb && idb.firstUse) || now;
+      let counter = Math.max(ls && ls.counter || 0, cookie && cookie.counter || 0, idb && idb.counter || 0);
+      let lastLogCount = Math.max(ls && ls.lastLogCount || 0, cookie && cookie.lastLogCount || 0, idb && idb.lastLogCount || 0);
+      let lastLogWrite = latest(ls && ls.lastLogWrite, cookie && cookie.lastLogWrite, idb && idb.lastLogWrite);
+      let parentResetAt = latest(ls && ls.parentResetAt, cookie && cookie.parentResetAt, idb && idb.parentResetAt);
+      let wipeDetectedAt = earliest(ls && ls.wipeDetectedAt, cookie && cookie.wipeDetectedAt, idb && idb.wipeDetectedAt);
+
+      if (opts.bump !== false) counter += 1;
+
+      const log = loadLog();
+      const logCount = log.attempts.length;
+      const logLast = logCount ? log.attempts[log.attempts.length - 1].at : null;
+
+      if (opts.parentReset) {
+        parentResetAt = now;
+        lastLogCount = 0;
+        lastLogWrite = null;
+        wipeDetectedAt = null;
+      } else {
+        const hadReset = parentResetAt && (!lastLogWrite || parentResetAt >= lastLogWrite);
+        if (logCount === 0 && lastLogCount > 0 && !hadReset) {
+          if (!wipeDetectedAt) wipeDetectedAt = now;
+        } else if (logCount > 0 && lastLogCount > logCount && !hadReset) {
+          if (!wipeDetectedAt) wipeDetectedAt = now;
+        } else if (logCount >= lastLogCount) {
+          lastLogCount = logCount;
+          if (logLast) lastLogWrite = logLast;
+        }
+      }
+
+      const data = {
+        v: 1,
+        firstUse: firstUse,
+        counter: counter,
+        lastLogCount: lastLogCount,
+        lastLogWrite: lastLogWrite,
+        parentResetAt: parentResetAt,
+        wipeDetectedAt: wipeDetectedAt
+      };
+      return writeAllSentinels(data).then(function (written) {
+        data.written = written;
+        writeLsSentinel(data);
+        writeCookieSentinel(data);
+        return writeIdbSentinel(data).then(function () {
+          const warnings = buildWarnings(data, logCount, missing);
+          integrity = {
+            ready: true,
+            firstUse: firstUse,
+            counter: counter,
+            lastLogCount: lastLogCount,
+            lastLogWrite: lastLogWrite,
+            parentResetAt: parentResetAt,
+            wipeDetectedAt: wipeDetectedAt,
+            warnings: warnings,
+            sources: { ls: !!ls, cookie: !!cookie, idb: !!idb },
+            written: written
+          };
+          if (opts.rerender !== false && screen.name === "eltern") render();
+        });
+      });
+    });
+  }
+  function queueIntegrity(opts) {
+    integrityQueue = integrityQueue.then(function () { return applyIntegrity(opts); }, function () { return applyIntegrity(opts); });
+    return integrityQueue;
   }
   function normalize(value) {
     return String(value).trim().toLowerCase().replace(/\s+/g, " ");
@@ -372,7 +735,7 @@ label.pw {
     saveProgress(progress);
   }
   function startQuiz(topicId, quizId) {
-    quizState = { index: 0, typed: "", chosen: null, checked: false, ok: false, score: 0, mistakes: [] };
+    quizState = { index: 0, typed: "", chosen: null, checked: false, ok: false, score: 0, runScore: 0, mistakes: [], retry: false, attemptNo: 0 };
     screen = { name: "quiz", topicId: topicId, quizId: quizId };
     pwError = "";
     render();
@@ -388,12 +751,12 @@ label.pw {
     }
     return html + "</p>";
   }
-  function passwordForm(act) {
+  function passwordForm(act, label, button) {
     let html = '<form class="card" data-act="password-form" data-next="' + esc(act) + '" style="margin-top:14px">';
-    html += '<label class="pw" for="pw-input">Passwort für die Lösungen</label>';
+    html += '<label class="pw" for="pw-input">' + esc(label || "Passwort für die Lösungen") + "</label>";
     if (pwError) html += '<div class="err">' + esc(pwError) + "</div>";
-    html += '<input type="password" id="pw-input" name="password" autocomplete="off" inputmode="numeric" placeholder="Passwort">';
-    html += '<button type="submit" class="submit"' + (pwBusy ? " disabled" : "") + ">" + (pwBusy ? "Prüfe …" : "Lösungen entsperren") + "</button>";
+    html += '<input type="password" id="pw-input" name="password" autocomplete="off" placeholder="Passwort">';
+    html += '<button type="submit" class="submit"' + (pwBusy ? " disabled" : "") + ">" + (pwBusy ? "Prüfe …" : esc(button || "Lösungen entsperren")) + "</button>";
     if (pwBusy) html += '<p class="wait">Einen Moment, das dauert kurz.</p>';
     html += "</form>";
     return html;
@@ -415,11 +778,11 @@ label.pw {
 
   function homeView() {
     const done = Object.keys(progress).length;
-    let html = '<div class="kicker">KLASSE 8 · GYMNASIUM NRW</div>';
-    html += '<h1 class="home-title">Englisch lernen</h1>';
-    html += '<p class="lead">Kurze Erklärungen und Tests zu Gerund, British und American English sowie Simple Present und Present Progressive. Tippe eine Antwort an und bekommst sofort Bescheid, ob sie stimmt.</p>';
+    let html = meta.kicker ? '<div class="kicker">' + esc(meta.kicker) + "</div>" : "";
+    html += '<h1 class="home-title">' + esc(meta.title) + "</h1>";
+    if (meta.lead) html += '<p class="lead">' + esc(meta.lead) + "</p>";
     if (done > 0) {
-      html += '<div class="banner">Schon ' + done + " " + (done === 1 ? "Test" : "Tests") + " gemacht. Deine besten Punkte bleiben auf diesem Gerät gespeichert.</div>";
+      html += '<div class="banner">Schon ' + done + " " + (done === 1 ? "Test" : "Tests") + " gemacht. Die Wertung zählt nur den ersten Versuch je Aufgabe. Die Punkte bleiben auf diesem Gerät gespeichert.</div>";
     }
     topics.forEach(function (topic) {
       const finished = topic.quizzes.filter(function (quiz) { return progress[quizKey(topic.id, quiz.id)]; }).length;
@@ -429,7 +792,8 @@ label.pw {
       html += '<div class="meta">' + topic.quizzes.length + " Tests" + (finished ? " · " + finished + " gemacht" : "") + "</div>";
       html += "</button>";
     });
-    html += '<p class="foot">Tipp fürs iPhone: In Safari auf <b>Teilen</b> tippen und <b>Zum Home-Bildschirm</b> wählen. Dann öffnet sich die Übung wie eine eigene App, ganz ohne die Grok-Bot-App.</p>';
+    if (meta.footer) html += '<p class="foot">' + esc(meta.footer) + "</p>";
+    html += '<button type="button" class="eltern-link" data-act="open-eltern">Elternansicht</button>';
     return html;
   }
 
@@ -438,13 +802,21 @@ label.pw {
     html += '<h1 class="page">' + esc(topic.title) + "</h1>";
     html += '<p class="lead">' + esc(topic.teaser) + "</p>";
     html += '<h2 class="sec">' + esc(topic.lessonTitle) + "</h2>";
-    if (topic.id === "be-ae") {
-      html += '<div class="card vocab"><div class="vocab-row vocab-head"><span>British</span><span>American</span><span>Deutsch</span></div>';
-      vocabRows.forEach(function (row) {
-        html += '<div class="vocab-row"><span>' + esc(row[0]) + "</span><span>" + esc(row[1]) + '</span><span class="muted">' + esc(row[2]) + "</span></div>";
+    (topic.tables || []).forEach(function (table) {
+      const cols = table.columns || [];
+      const style = "grid-template-columns: repeat(" + cols.length + ", 1fr)";
+      html += '<div class="card vocab"><div class="vocab-row vocab-head" style="' + style + '">';
+      cols.forEach(function (col) { html += "<span>" + esc(col) + "</span>"; });
+      html += "</div>";
+      (table.rows || []).forEach(function (row) {
+        html += '<div class="vocab-row" style="' + style + '">';
+        row.forEach(function (cell, i) {
+          html += '<span' + (i === row.length - 1 ? ' class="muted"' : "") + ">" + esc(cell) + "</span>";
+        });
+        html += "</div>";
       });
       html += "</div>";
-    }
+    });
     topic.lesson.forEach(function (block) {
       html += '<div class="card lesson"><div class="lesson-h">' + esc(block.heading) + "</div>";
       html += '<div class="lesson-b">' + esc(block.body) + "</div>";
@@ -460,7 +832,7 @@ label.pw {
       html += '<button type="button" class="card-btn" data-act="start-quiz" data-topic="' + arg(topic.id) + '" data-arg="' + arg(quiz.id) + '">';
       html += '<div class="card-title sm">' + esc(quiz.title) + "</div>";
       html += '<div class="teaser">' + esc(quiz.blurb) + "</div>";
-      if (saved) html += '<div class="meta">Beste Punktzahl: ' + saved.best + "/" + saved.total + "</div>";
+      if (saved) html += '<div class="meta">Erstversuch: ' + saved.best + "/" + saved.total + "</div>";
       html += "</button>";
       html += '<button type="button" class="linkish" data-act="open-solutions" data-topic="' + arg(topic.id) + '" data-arg="' + arg(quiz.id) + '">Lösungen anzeigen</button>';
       html += "</div>";
@@ -499,7 +871,9 @@ label.pw {
       html += "</form>";
     }
     if (st.checked) {
-      html += '<div class="fb ' + (st.ok ? "ok" : "no") + '"><div class="fb-title">' + (st.ok ? "Richtig" : "Leider falsch") + "</div></div>";
+      html += '<div class="fb ' + (st.ok ? "ok" : "no") + '"><div class="fb-title">' + (st.ok ? "Richtig" : "Leider falsch") + "</div>";
+      if (st.retry) html += '<div class="retry-note">Wiederholung, zählt nicht für die Wertung.</div>';
+      html += "</div>";
     }
     html += "</div>";
     if (st.checked) {
@@ -521,8 +895,14 @@ label.pw {
     let html = '<button type="button" class="back" data-act="back-topic">‹ Zu den Tests</button>';
     html += '<div class="card result"><div class="hint">' + esc(quiz.title) + "</div>";
     html += '<div class="score">' + result.score + "/" + result.total + "</div>";
-    html += '<div class="pct">' + pct + " %</div>";
-    html += '<p class="muted">' + esc(message) + "</p></div>";
+    html += '<div class="pct">' + pct + " % im Erstversuch</div>";
+    html += '<p class="muted">' + esc(message) + "</p>";
+    if (typeof result.runScore === "number") {
+      html += '<p class="muted">Dieser Durchgang: ' + result.runScore + " von " + result.total + ". Für die Wertung zählt nur der erste Versuch je Aufgabe.</p>";
+    } else {
+      html += '<p class="muted">Für die Wertung zählt nur der erste Versuch je Aufgabe.</p>';
+    }
+    html += "</div>";
     if (result.mistakes.length) {
       html += '<div class="card" style="margin-top:14px"><h2 class="sec">Deine Fehler</h2>';
       result.mistakes.forEach(function (item, i) {
@@ -557,6 +937,107 @@ label.pw {
     return html;
   }
 
+
+  function elternView() {
+    let html = '<button type="button" class="back" data-act="home">‹ Übersicht</button>';
+    html += '<div class="kicker">Nur für Eltern</div>';
+    html += '<h1 class="page">Elternansicht</h1>';
+    if (!unlocked) {
+      html += '<p class="lead">Hier siehst du, welche Aufgaben beantwortet wurden, ob der erste Versuch stimmte und wie oft nachgearbeitet wurde.</p>';
+      html += passwordForm("eltern", "Passwort für die Elternansicht", "Elternansicht öffnen");
+      return html;
+    }
+    const log = loadLog();
+    const byTask = {};
+    log.attempts.forEach(function (a) {
+      if (!byTask[a.taskId]) byTask[a.taskId] = [];
+      byTask[a.taskId].push(a);
+    });
+    let totalTasks = 0;
+    let answered = 0;
+    let firstOk = 0;
+    const many = [];
+    topics.forEach(function (topic) {
+      topic.quizzes.forEach(function (quiz) {
+        quiz.questions.forEach(function (q, i) {
+          totalTasks++;
+          const id = taskId(topic.id, quiz.id, i);
+          const list = byTask[id] || [];
+          if (list.length) {
+            answered++;
+            if (list[0].correct) firstOk++;
+            if (list.length >= MANY_ATTEMPTS) {
+              many.push({
+                label: topic.title + " · " + quiz.title + " · Aufgabe " + (i + 1),
+                n: list.length,
+                prompt: q.prompt
+              });
+            }
+          }
+        });
+      });
+    });
+    many.sort(function (a, b) { return b.n - a.n; });
+    const rate = answered ? Math.round((firstOk / answered) * 100) : 0;
+    if (!integrity.ready) {
+      html += '<p class="muted">Sicherungsdaten werden geprüft …</p>';
+    } else {
+      integrity.warnings.forEach(function (w) {
+        html += '<div class="warn-box ' + esc(w.level) + '">' + esc(w.text) + "</div>";
+      });
+      html += '<p class="muted">Das Protokoll liegt nur auf diesem Gerät. Erster Start: ' + esc(formatTime(integrity.firstUse)) + " · Öffnungen: " + integrity.counter + " · Sicherungen: localStorage, IndexedDB, Cookie.</p>";
+    }
+    html += '<div class="card"><h2 class="sec">Zusammenfassung</h2>';
+    html += '<p class="muted">Beantwortet: ' + answered + " von " + totalTasks + " Aufgaben</p>";
+    html += '<p class="muted">Erstversuch richtig: ' + firstOk + " von " + answered + " beantworteten Aufgaben (" + rate + "%)</p>";
+    if (many.length) {
+      html += '<p class="muted" style="margin-top:12px"><strong>Aufgaben mit vielen Versuchen</strong> (' + MANY_ATTEMPTS + " oder mehr):</p><ul class=\"warn-list\">";
+      many.forEach(function (item) {
+        html += "<li>" + esc(item.label) + " · " + item.n + " Versuche · " + esc(item.prompt) + "</li>";
+      });
+      html += "</ul>";
+    } else {
+      html += '<p class="muted" style="margin-top:12px">Bisher keine Aufgaben mit ' + MANY_ATTEMPTS + " oder mehr Versuchen.</p>";
+    }
+    html += "</div>";
+    topics.forEach(function (topic) {
+      html += '<div class="card" style="margin-top:14px"><h2 class="sec">' + esc(topic.title) + "</h2>";
+      topic.quizzes.forEach(function (quiz) {
+        html += '<h3 class="card-title sm" style="margin:14px 0 8px">' + esc(quiz.title) + "</h3>";
+        quiz.questions.forEach(function (q, i) {
+          const id = taskId(topic.id, quiz.id, i);
+          const list = byTask[id] || [];
+          html += '<div class="task-log"><div class="m-q">' + (i + 1) + ". " + esc(q.prompt) + "</div>";
+          if (!list.length) {
+            html += '<span class="badge mute">nicht beantwortet</span>';
+          } else {
+            html += list[0].correct
+              ? '<span class="badge ok">Erstversuch richtig</span>'
+              : '<span class="badge no">Erstversuch falsch</span>';
+            html += '<span class="badge mute">' + list.length + (list.length === 1 ? " Versuch" : " Versuche") + "</span>";
+            html += '<div class="when">Erster Versuch: ' + esc(formatTime(list[0].at)) + "</div>";
+            html += '<div class="given">Antworten: ';
+            html += list.map(function (a) {
+              return esc(a.given || "—") + (a.correct ? " (richtig)" : " (falsch)") + " · " + esc(formatTime(a.at));
+            }).join("; ");
+            html += "</div>";
+          }
+          html += "</div>";
+        });
+      });
+      html += "</div>";
+    });
+    html += '<div class="card" style="margin-top:14px"><h2 class="sec">Protokoll zurücksetzen</h2>';
+    html += '<p class="muted">Löscht nur das Antwortprotokoll, nicht die angezeigten Erstversuch-Punkte. Danach kann neu gewertet werden. Das Kind sieht diesen Knopf nirgendwo sonst.</p>';
+    if (resetConfirm) {
+      html += passwordForm("reset-log", "Passwort bestätigen, um das Antwortprotokoll zu löschen", "Protokoll löschen");
+    } else {
+      html += '<button type="button" class="linkish" data-act="ask-reset-log">Protokoll löschen …</button>';
+    }
+    html += "</div>";
+    return html;
+  }
+
   function view() {
     if (screen.name === "topic") {
       const topic = findTopic(screen.topicId);
@@ -574,6 +1055,7 @@ label.pw {
       const quiz = findQuiz(screen.topicId, screen.quizId);
       return quiz ? solutionsView(screen.topicId, screen.quizId) : homeView();
     }
+    if (screen.name === "eltern") return elternView();
     return homeView();
   }
 
@@ -592,11 +1074,19 @@ label.pw {
     const quiz = findQuiz(screen.topicId, screen.quizId);
     const question = quiz.questions[quizState.index];
     const right = await isRight(screen.topicId, screen.quizId, quizState.index, value);
+    const attemptNo = recordAttempt(screen.topicId, screen.quizId, quizState.index, value, right);
+    const retry = attemptNo > 1;
     quizState.chosen = value;
     quizState.checked = true;
     quizState.ok = right;
-    if (right) quizState.score += 1;
-    else quizState.mistakes.push({ prompt: question.prompt, given: value, index: quizState.index });
+    quizState.retry = retry;
+    quizState.attemptNo = attemptNo;
+    if (right) {
+      quizState.runScore += 1;
+      if (!retry) quizState.score += 1;
+    } else {
+      quizState.mistakes.push({ prompt: question.prompt, given: value, index: quizState.index });
+    }
     render();
   }
 
@@ -606,15 +1096,32 @@ label.pw {
     pwError = "";
     render();
     try {
-      await unlockWithPassword(password);
-      screen.showPw = false;
-      if (next === "solutions" || screen.name === "solutions") {
-        screen = { name: "solutions", topicId: screen.topicId, quizId: screen.quizId };
+      if (next === "reset-log") {
+        const key = await deriveKey(password, vault.salt);
+        await crypto.subtle.decrypt(
+          { name: "AES-GCM", iv: b64dec(vault.iv) },
+          key,
+          b64dec(vault.ciphertext)
+        );
+        clearLog();
+        resetConfirm = false;
+        pwError = "";
+        screen = { name: "eltern" };
+        await queueIntegrity({ bump: true, parentReset: true, rerender: true });
+      } else {
+        await unlockWithPassword(password);
+        screen.showPw = false;
+        if (next === "eltern") screen = { name: "eltern" };
+        else if (next === "solutions" || screen.name === "solutions") {
+          screen = { name: "solutions", topicId: screen.topicId, quizId: screen.quizId };
+        }
       }
     } catch (e) {
       pwError = "Das Passwort ist falsch.";
-      unlocked = false;
-      solutions = null;
+      if (next !== "reset-log") {
+        unlocked = false;
+        solutions = null;
+      }
     }
     pwBusy = false;
     render();
@@ -647,15 +1154,19 @@ label.pw {
       quizState.chosen = null;
       quizState.checked = false;
       quizState.ok = false;
+      quizState.retry = false;
+      quizState.attemptNo = 0;
       render();
     } else if (act === "finish") {
       const quiz = findQuiz(screen.topicId, screen.quizId);
-      recordScore(screen.topicId, screen.quizId, quizState.score, quiz.questions.length);
+      const official = officialFirstScore(screen.topicId, screen.quizId, quiz.questions.length);
+      recordScore(screen.topicId, screen.quizId, official, quiz.questions.length);
       screen = {
         name: "result",
         topicId: screen.topicId,
         quizId: screen.quizId,
-        score: quizState.score,
+        score: official,
+        runScore: quizState.runScore,
         total: quiz.questions.length,
         mistakes: quizState.mistakes,
         showPw: false
@@ -671,6 +1182,15 @@ label.pw {
       render();
     } else if (act === "ask-password") {
       screen.showPw = true;
+      pwError = "";
+      render();
+    } else if (act === "open-eltern") {
+      screen = { name: "eltern" };
+      pwError = "";
+      resetConfirm = false;
+      render();
+    } else if (act === "ask-reset-log") {
+      resetConfirm = true;
       pwError = "";
       render();
     }
@@ -694,8 +1214,16 @@ label.pw {
   app.addEventListener("click", onClick);
   app.addEventListener("submit", onSubmit);
   render();
+  queueIntegrity({ bump: true, rerender: true });
 })();
 
+  </script>
+  <script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", function () {
+      navigator.serviceWorker.register("./sw.js");
+    });
+  }
   </script>
 </body>
 </html>

@@ -11,6 +11,12 @@
   "description": "Lern-App zur Klassenarbeit in Klasse 8: Gerund, British und American English sowie Simple Present und Present Progressive.",
   "icons": [
     {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
       "src": "icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
