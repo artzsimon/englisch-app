@@ -1,6 +1,6 @@
 {
-  "name": "Englisch Klasse 8",
-  "short_name": "Englisch 8",
+  "name": "Niklas’ Englisch-App",
+  "short_name": "Niklas Englisch",
   "lang": "de",
   "dir": "ltr",
   "display": "standalone",
@@ -8,7 +8,7 @@
   "scope": "./",
   "background_color": "#f3efe6",
   "theme_color": "#0f5f56",
-  "description": "Lern-App zur Klassenarbeit in Klasse 8: Gerund, British und American English sowie Simple Present und Present Progressive.",
+  "description": "Lern-App für Niklas: Gerund, British und American English, Simple Present und Present Progressive, Modalersatzformen und Mix-Tests, mit Versuchsprotokoll für die Elternansicht.",
   "icons": [
     {
       "src": "icon-192.png",

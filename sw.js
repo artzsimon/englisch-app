@@ -1,4 +1,4 @@
-const CACHE = "lern-app-englisch-k8-" + "1795013965392";
+const CACHE = "lern-app-englisch-k8-" + "1795014274022";
 const PRECACHE = ["./","./index.html","./manifest.webmanifest","./icon-192.png","./icon-512.png","./apple-touch-icon.png"];
 self.addEventListener("install", function (event) {
   event.waitUntil(caches.open(CACHE).then(function (cache) { return cache.addAll(PRECACHE); }).then(function () { return self.skipWaiting(); }));
